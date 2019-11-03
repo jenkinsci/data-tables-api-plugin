@@ -1,0 +1,29 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
+  <st:documentation>
+    Renders a table.
+    <st:attribute name="model" use="required"
+                  type="io.jenkins.plugins.datatables.api.TableModel">
+      The model of the table.
+    </st:attribute>
+  </st:documentation>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped data-table"
+           data-columns-definition="${model.columnsDefinition}" id="${model.id}">
+      <colgroup>
+        <j:forEach var="width" items="${model.widths}">
+          <col class="col-width-${width}"/>
+        </j:forEach>
+      </colgroup>
+      <thead>
+        <tr>
+          <j:forEach var="label" items="${model.headers}">
+            <th>${label}</th>
+          </j:forEach>
+        </tr>
+      </thead>
+    </table>
+  </div>
+
+</j:jelly>
