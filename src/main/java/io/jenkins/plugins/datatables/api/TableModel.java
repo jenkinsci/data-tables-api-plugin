@@ -4,18 +4,25 @@ import java.util.List;
 import java.util.StringJoiner;
 
 /**
- * Provides the model for the issues details table. The model consists of the following parts:
+ * Provides a model for tables that are rendered with JQuery DataTables.
+ * The model consists of the following parts:
  *
  * <ul>
  * <li>header name for each column</li>
+ * <li>column definition for each column</li>
  * <li>width for each column</li>
+ * <li>row content</li>
  * <li>content for each row</li>
- * <li>content for whole table</li>
  * </ul>
  *
  * @author Ullrich Hafner
  */
 public abstract class TableModel {
+    /**
+     * Returns the ID of the table. All IDs must be unique on a given web page.
+     *
+     * @return the table ID
+     */
     public abstract String getId();
 
     /**
