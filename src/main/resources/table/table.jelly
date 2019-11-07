@@ -1,7 +1,8 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
   <st:documentation>
-    Renders a table.
+    Renders a JQuery DataTables instance. The table data is fetched using an Ajax call to the associated view.
+
     <st:attribute name="model" use="required"
                   type="io.jenkins.plugins.datatables.api.TableModel">
       The model of the table.
