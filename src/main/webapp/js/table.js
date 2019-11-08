@@ -1,4 +1,4 @@
-/* global jQuery, view */
+/* global jQuery, tableDataProxy */
 (function ($) {
     const allTables = $('table.data-table');
 
@@ -42,7 +42,7 @@
                 // Content is loaded on demand: if the active tab shows the table, then content is loaded using Ajax
                 if (!table[0].hasAttribute('isLoaded')) {
                     table.attr('isLoaded', 'true');
-                    view.getTableRows(id, function (t) {
+                    tableDataProxy.getTableRows(id, function (t) {
                         (function ($) {
                             var model = JSON.parse(t.responseObject());
                             dataTable.rows.add(model).draw();
