@@ -1,11 +1,9 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
   <st:documentation>
-    Renders a JQuery DataTables instance. The table data is fetched asynchronously from the associated view using
-    an Ajax call. In order to correctly connect the jelly view with the Jenkins ModelObject via a Stapler proxy the
-    following two requirements must be met: The Jenkins model object needs to implement the AsyncTableContentProvider
-    interface and the corresponding view that includes this table needs to define a Stapler proxy variable called
-    view, see code snippet above.
+    Renders a JQuery DataTables instance. The table data is loaded asynchronously from the associated view using
+    an Ajax call. In order to correctly connect the jelly view with the Jenkins ModelObject via a Stapler proxy
+    your model Java class needs to implement the AsyncTableContentProvider interface.
 
     <st:attribute name="model" use="required"
                   type="io.jenkins.plugins.datatables.api.TableModel">
@@ -13,6 +11,9 @@
     </st:attribute>
 
   </st:documentation>
+
+  <st:adjunct includes="io.jenkins.plugins.data-tables"/>
+  <st:adjunct includes="io.jenkins.plugins.bind-tables"/>
 
   <div class="table-responsive">
     <table class="table table-hover table-striped data-table"

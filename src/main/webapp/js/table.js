@@ -1,5 +1,16 @@
 /* global jQuery, tableDataProxy */
 (function ($) {
+    $(document).ready(function () {
+        bindTables($);
+    });
+})(jQuery);
+
+/**
+ * Binds all tables that have the class 'data-table' to a new JQuery DataTables instance.
+ *
+ * @param {Object} $ - JQuery
+ */
+function bindTables($) {
     const allTables = $('table.data-table');
 
     allTables.each(function () {
@@ -91,6 +102,4 @@
             dataTable.page.len(storedLength).draw();
         }
     });
-
-})(jQuery);
-
+}

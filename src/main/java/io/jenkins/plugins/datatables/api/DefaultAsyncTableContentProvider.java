@@ -2,17 +2,26 @@ package io.jenkins.plugins.datatables.api;
 
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.kohsuke.stapler.bind.JavaScriptMethod;
 
 /**
- * Provides a default implementation to create the rows of a given date table.
+ * An {@link AsyncTableContentProvider} that provides a default implementation to extract the rows of a given date table
+ * as JSON objects.
  *
  * @author Ullrich Hafner
  */
 public abstract class DefaultAsyncTableContentProvider implements AsyncTableContentProvider {
     private String toJsonArray(final List<Object> rows) {
-        JacksonFacade facade = new JacksonFacade();
-        return facade.toJson(rows);
+        try {
+            return new ObjectMapper().writeValueAsString(rows);
+        }
+        catch (JsonProcessingException exception) {
+            throw new IllegalArgumentException(
+                    String.format("Can't convert table rows '%s' to JSON object", rows), exception);
+        }
     }
 
     @Override
