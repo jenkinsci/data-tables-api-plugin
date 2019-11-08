@@ -18,14 +18,14 @@ function bindTables($) {
         const id = table.attr('id');
 
         if (table.length) {
-            // Create a data table instance for the issues table.
             const dataTable = table.DataTable({
                 language: {
                     emptyTable: 'Loading - please wait ...'
                 },
                 deferRender: true,
-                pagingType: 'numbers', // Page number button only
-                order: [[1, 'asc']],
+                pagingType: 'numbers', // page number button only
+                order: [[1, 'asc']], // default order, if not persisted yet
+                // FIXME: extract to model
                 columnDefs: [{
                     targets: 0, // First column contains details button
                     orderable: false
