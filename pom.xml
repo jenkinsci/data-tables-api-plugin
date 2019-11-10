@@ -13,12 +13,12 @@
   <groupId>io.jenkins.plugins</groupId>
   <packaging>hpi</packaging>
   <name>DataTables.net API Plugin</name>
-  <version>1.10.20-1-SNAPSHOT</version>
+  <version>1.10.20-1-beta1-SNAPSHOT</version>
   <description>Jenkins plug-that provides JQuery DataTables.</description>
 
   <properties>
     <datatables.version>1.10.20</datatables.version>
-    <jquery3-api.version>3.4.1-1-20191109.214852-1</jquery3-api.version>
+    <jquery3-api.version>3.4.1-1-beta1</jquery3-api.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jenkins.version>2.138.4</jenkins.version>
