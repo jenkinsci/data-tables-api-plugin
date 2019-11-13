@@ -5,8 +5,7 @@
     an Ajax call. In order to correctly connect the jelly view with the Jenkins ModelObject via a Stapler proxy
     your model Java class needs to implement the AsyncTableContentProvider interface.
 
-    <st:attribute name="model" use="required"
-                  type="io.jenkins.plugins.datatables.api.TableModel">
+    <st:attribute name="model" use="required" type="io.jenkins.plugins.datatables.api.TableModel">
       The model of the table.
     </st:attribute>
 
@@ -19,14 +18,14 @@
     <table class="table table-hover table-striped data-table"
            data-columns-definition="${model.columnsDefinition}" id="${model.id}">
       <colgroup>
-        <j:forEach var="width" items="${model.widths}">
-          <col class="col-width-${width}"/>
+        <j:forEach var="c" items="${model.columns}">
+          <col class="col-width-${c.width}"/>
         </j:forEach>
       </colgroup>
       <thead>
         <tr>
-          <j:forEach var="label" items="${model.headers}">
-            <th>${label}</th>
+          <j:forEach var="c" items="${model.columns}">
+            <th class="${c.headerClass}">${c.headerLabel}</th>
           </j:forEach>
         </tr>
       </thead>

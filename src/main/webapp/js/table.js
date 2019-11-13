@@ -27,7 +27,7 @@ function bindTables($) {
                 order: [[1, 'asc']], // default order, if not persisted yet
                 // FIXME: extract to model
                 columnDefs: [{
-                    targets: 0, // First column contains details button
+                    targets: 'nosort',
                     orderable: false
                 }],
                 columns: JSON.parse(table.attr('data-columns-definition'))
@@ -54,7 +54,7 @@ function bindTables($) {
                 if (!table[0].hasAttribute('isLoaded')) {
                     table.attr('isLoaded', 'true');
                     tableDataProxy.getTableRows(id, function (t) {
-                        (function ($) {
+                        (function () {
                             var model = JSON.parse(t.responseObject());
                             dataTable.rows.add(model).draw();
                         })(jQuery);
