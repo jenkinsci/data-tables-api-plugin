@@ -1,9 +1,9 @@
-/* global jQuery, tableDataProxy */
-(function ($) {
+/* global jQuery, luxon, tableDataProxy */
+(function ($, luxon) {
     $(document).ready(function () {
-        bindTables($);
+        bindTables($, luxon);
     });
-})(jQuery);
+})(jQuery, luxon);
 
 /**
  * Binds all tables that have the class 'data-table' to a new JQuery DataTables instance.
@@ -25,11 +25,28 @@ function bindTables($) {
                 deferRender: true,
                 pagingType: 'numbers', // page number button only
                 order: [[1, 'asc']], // default order, if not persisted yet
-                // FIXME: extract to model
-                columnDefs: [{
-                    targets: 'nosort',
-                    orderable: false
-                }],
+                columnDefs: [
+                    {
+                        targets: 'nosort', // All columns with the '.nosort' class in the <th>
+                        orderable: false
+                    },
+                    {
+                        targets: 'date', // All columns with the '.date' class in the <th>
+                        render: function (data, type, _row, _meta) {
+                            if (type === 'display') {
+                                if (data === 0) {
+                                    return '-';
+                                }
+                                var dateTime = luxon.DateTime.fromMillis(data * 1000);
+                                return '<span title="' + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">' +
+                                    dateTime.toRelative({ locale: 'en' }) + '</span>';
+                            }
+                            else {
+                                return data;
+                            }
+                        }
+                    }
+                ],
                 columns: JSON.parse(table.attr('data-columns-definition'))
             });
 
@@ -61,8 +78,6 @@ function bindTables($) {
                     });
                 }
             });
-
-
         }
     });
 
