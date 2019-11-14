@@ -38,7 +38,7 @@ function bindTables($) {
                                     return '-';
                                 }
                                 var dateTime = luxon.DateTime.fromMillis(data * 1000);
-                                return '<span title="' + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">' +
+                                return '<span data-toggle="tooltip" data-placement="bottom" title="' + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">' +
                                     dateTime.toRelative({ locale: 'en' }) + '</span>';
                             }
                             else {
@@ -74,6 +74,8 @@ function bindTables($) {
                         (function () {
                             var model = JSON.parse(t.responseObject());
                             dataTable.rows.add(model).draw();
+                            $('[data-toggle="tooltip"]').tooltip();
+
                         })(jQuery);
                     });
                 }
