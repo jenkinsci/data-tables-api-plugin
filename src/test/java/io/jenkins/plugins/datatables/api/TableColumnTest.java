@@ -3,6 +3,8 @@ package io.jenkins.plugins.datatables.api;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
+import io.jenkins.plugins.datatables.api.TableColumn.ColumnCss;
+
 import static io.jenkins.plugins.datatables.api.assertions.Assertions.*;
 
 /**
@@ -12,7 +14,6 @@ import static io.jenkins.plugins.datatables.api.assertions.Assertions.*;
  */
 class TableColumnTest {
     private static final String LABEL = "label";
-    private static final String CSS_CLASS = "class";
     private static final int WIDTH = 2;
 
     @Test
@@ -38,12 +39,12 @@ class TableColumnTest {
     @Test
     void shouldCreateColumnWithOtherProperties() {
         TableColumn column = new TableColumn(LABEL, "simple")
-                .setHeaderClass(CSS_CLASS)
+                .setHeaderClass(ColumnCss.DATE)
                 .setWidth(WIDTH);
 
         assertThat(column).hasHeaderLabel(LABEL);
         assertThat(column).hasDefinition("{\"data\": \"simple\"}");
-        assertThat(column).hasHeaderClass(CSS_CLASS);
+        assertThat(column).hasHeaderClass("date");
         assertThat(column).hasWidth(WIDTH);
     }
 }

@@ -22,7 +22,7 @@ public class TableColumn {
     private final String headerLabel;
     private final String definition;
 
-    private String headerClass = EMPTY;
+    private ColumnCss headerClass = ColumnCss.NONE;
     private int width = 1;
 
     /**
@@ -61,7 +61,7 @@ public class TableColumn {
                 + "}", columnDataType, dataPropertyName);
     }
 
-    public TableColumn setHeaderClass(final String headerClass) {
+    public TableColumn setHeaderClass(final ColumnCss headerClass) {
         this.headerClass = headerClass;
 
         return this;
@@ -78,7 +78,7 @@ public class TableColumn {
     }
 
     public String getHeaderClass() {
-        return headerClass;
+        return headerClass.toString();
     }
 
     public int getWidth() {
@@ -87,5 +87,25 @@ public class TableColumn {
 
     public String getDefinition() {
         return definition;
+    }
+
+    /**
+     * Supported CSS classes that will enable special handling or rendering for table columns.
+     */
+    public enum ColumnCss {
+        NONE(""),
+        DATE("date"),
+        NO_SORT("nosort");
+
+        private final String cssClass;
+
+        ColumnCss(final String cssClass) {
+            this.cssClass = cssClass;
+        }
+
+        @Override
+        public String toString() {
+            return cssClass;
+        }
     }
 }
