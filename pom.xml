@@ -12,7 +12,7 @@
   <groupId>io.jenkins.plugins</groupId>
   <packaging>hpi</packaging>
   <name>DataTables.net API Plugin</name>
-  <version>1.10.20-2-beta2-SNAPSHOT</version>
+  <version>1.10.20-1-beta3-SNAPSHOT</version>
   <description>Jenkins plug-that provides JQuery DataTables.</description>
 
   <properties>
