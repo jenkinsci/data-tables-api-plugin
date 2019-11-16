@@ -1,0 +1,66 @@
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* DataTables Material Design                                                                                          */
+/* ------------------------------------------------------------------------------------------------------------------- */
+
+table.dataTable {
+    border-collapse: collapse !important;
+}
+
+/* Change color of active pagination, to fit to the material blue grey css */
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #607d8b;
+    border-color: #607d8b;
+}
+
+/* Change color of inactive pagination, to fit to the material blue grey css */
+.pagination > li > a, .pagination > li > span {
+    color: #607d8b;
+}
+
+/* Change color of active pagination, to fit to the material blue grey css */
+.page-item.active .page-link {
+    background-color: #607d8b;
+    border-color: #607d8b;
+}
+
+/* Add padding-top for more space */
+.tab-content > .active {
+    display: block;
+    padding-top: 20px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* DataTables Details                                                                                                  */
+/* ------------------------------------------------------------------------------------------------------------------- */
+
+/* Mouse cursor pointer for details icon */
+div.details-control {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Add font awesome plus icon when its closed */
+.fa:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+/* Add font awesome plus icon when its closed */
+div.details-control:before {
+    content: "\f055";
+    font-family: "Font Awesome 5 Free";
+    padding: 12px;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #b4b4b4;
+}
+
+/* Add font awesome minus icon when it's opened */
+tr.shown div.details-control:before {
+    content: "\f056";
+    font-family: "Font Awesome 5 Free";
+    padding: 12px;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: #b4b4b4;
+}

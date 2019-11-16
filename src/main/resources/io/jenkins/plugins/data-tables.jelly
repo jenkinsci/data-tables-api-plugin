@@ -6,7 +6,8 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables"/>
 
   <st:adjunct includes="io.jenkins.plugins.jquery3"/>
 
-  <link rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/dataTables.bootstrap4.min.css"/>
+  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/dataTables.bootstrap4.min.css"/>
+  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/css/jenkins-style.css"/>
 
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/jquery.dataTables.min.js"/>
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/dataTables.bootstrap4.min.js"/>
