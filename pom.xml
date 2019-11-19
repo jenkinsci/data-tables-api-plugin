@@ -1,22 +1,26 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
     <version>3.50</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <artifactId>data-tables-api</artifactId>
   <groupId>io.jenkins.plugins</groupId>
   <packaging>hpi</packaging>
   <name>DataTables.net API Plugin</name>
-  <version>0.1.0-SNAPSHOT</version>
+  <version>1.10.20-1-beta4-SNAPSHOT</version>
   <description>Jenkins plug-that provides JQuery DataTables.</description>
+  <url>https://github.com/jenkinsci/data-tables-plugin</url>
 
   <properties>
+    <datatables.version>1.10.20</datatables.version>
+    <jquery3-api.version>3.4.1-1-beta1</jquery3-api.version>
+    <font-awesome-api.version>5.10.1-1-beta1</font-awesome-api.version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jenkins.version>2.138.4</jenkins.version>
     <java.level>8</java.level>
@@ -31,6 +35,7 @@
     <error-prone.version>2.3.3</error-prone.version>
     <spotbugs.annotations>3.1.12</spotbugs.annotations>
     <commons.lang.version>3.9</commons.lang.version>
+    <jackson-databind.version>2.9.10.1</jackson-databind.version>
 
     <!-- Test Library Dependencies Versions -->
     <junit.version>5.5.2</junit.version>
@@ -62,8 +67,6 @@
     <revapi-maven-plugin.version>0.11.1</revapi-maven-plugin.version>
     <revapi-java.version>0.19.1</revapi-java.version>
     <assertj-assertions-generator-maven-plugin.version>2.2.0</assertj-assertions-generator-maven-plugin.version>
-
-    <datatables.version>1.10.20</datatables.version>
   </properties>
 
   <licenses>
@@ -93,7 +96,19 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>jquery3-api</artifactId>
-      <version>0.1.0-SNAPSHOT</version>
+      <version>${jquery3-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>font-awesome-api</artifactId>
+      <version>${font-awesome-api.version}</version>
+    </dependency>
+
+    <!-- Project Dependencies -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
     </dependency>
 
     <!-- Test Dependencies -->
@@ -423,12 +438,12 @@
         </executions>
         <configuration>
           <packages>
-            <package>io.jenkins.plugins.forensics</package>
+            <package>io.jenkins.plugins.datatables.api</package>
           </packages>
           <excludes>
             <exclude>.*ITest</exclude>
           </excludes>
-          <entryPointClassPackage>io.jenkins.plugins.quality.assertions</entryPointClassPackage>
+          <entryPointClassPackage>io.jenkins.plugins.datatables.api.assertions</entryPointClassPackage>
           <cleanTargetDir>true</cleanTargetDir>
           <hierarchical>false</hierarchical>
           <generateBddAssertions>false</generateBddAssertions>
