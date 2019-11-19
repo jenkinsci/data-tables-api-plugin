@@ -4,7 +4,7 @@
 ![JDK8](https://img.shields.io/badge/jdk-8-yellow.svg?label=min.%20JDK)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Actions](https://github.com/jenkinsci/data-tables-api-plugin/workflows/GitHub%20Actions/badge.svg)](https://github.com/jenkinsci/data-tables-api-plugin/actions)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/jenkinsci/data-tables-api-plugin.svg)](https://github.com/jenkinsci/data-tables-api-plugin/pulls)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/uhafner/data-tables-api-plugin.svg)](https://github.com/jenkinsci/data-tables-api-plugin/pulls)
 
 Provides [DataTables](https://datatables.net) for Jenkins Plugins.
 
