@@ -21,9 +21,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uhafner/data-tables-api-plugin.git"
+    "url": "git+https://github.com/jenkinsci/data-tables-api-plugin.git"
   },
   "author": "Ullrich Hafner",
   "license": "MIT",
-  "homepage": "https://github.com/uhafner/data-tables-api#readme"
+  "homepage": "https://github.com/jenkinsci/data-tables-api#readme"
 }
