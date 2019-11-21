@@ -17,8 +17,6 @@ import io.jenkins.plugins.datatables.api.TableModel.DetailedColumnDefinition;
  * @author Ullrich Hafner
  */
 public class TableColumn {
-    private static final String EMPTY = "";
-
     private final String headerLabel;
     private final String definition;
 
