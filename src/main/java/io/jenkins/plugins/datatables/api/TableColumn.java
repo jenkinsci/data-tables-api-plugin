@@ -7,11 +7,11 @@ import io.jenkins.plugins.datatables.api.TableModel.DetailedColumnDefinition;
  * parts:
  *
  * <ul>
- * <li>header label</li>
- * <li>header CSS class</li>
- * <li>column definition</li>
- * <li>width</li>
- * <li>tooltip</li>
+ *   <li>header label</li>
+ *   <li>header CSS class</li>
+ *   <li>column definition</li>
+ *   <li>width</li>
+ *   <li>tooltip</li>
  * </ul>
  *
  * @author Ullrich Hafner
@@ -59,12 +59,29 @@ public class TableColumn {
                 + "}", columnDataType, dataPropertyName);
     }
 
+    /**
+     * Sets the CSS class for the column {@code <th>} tag. Multiple classes need to be separated using a space.
+     *
+     * @param headerClass
+     *         the CSS class(es) for the {@code <th>} tag
+     *
+     * @return this column
+     */
     public TableColumn setHeaderClass(final ColumnCss headerClass) {
         this.headerClass = headerClass;
 
         return this;
     }
 
+    /**
+     * Sets the width of the column. Will be expanded to the class {@code col-width-[width]}, see
+     * {@code jenkins-style.css} for details about the actual percentages.
+     *
+     * @param width
+     *         the width CSS class to select for the column
+     *
+     * @return this column
+     */
     public TableColumn setWidth(final int width) {
         this.width = width;
 
@@ -91,8 +108,14 @@ public class TableColumn {
      * Supported CSS classes that will enable special handling or rendering for table columns.
      */
     public enum ColumnCss {
+        /** No special rendering, the display property will be shown as such. */
         NONE(""),
+        /**
+         * Dates will be shown using Luxon. The display value will be a human friendly relative time like
+         * "two weeks ago", rather than an absolute time. A tooltip is available that shows the absolute time.
+         */
         DATE("date"),
+        /** Disables sorting of the column. Rendering is the same as with {@code NONE}. */
         NO_SORT("nosort");
 
         private final String cssClass;

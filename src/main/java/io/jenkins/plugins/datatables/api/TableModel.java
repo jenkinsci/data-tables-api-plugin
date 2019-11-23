@@ -7,11 +7,9 @@ import java.util.stream.Collectors;
  * Provides a model for tables that are rendered with JQuery DataTables. The model consists of the following parts:
  *
  * <ul>
- * <li>header name for each column</li>
- * <li>column definition for each column</li>
- * <li>width for each column</li>
- * <li>row content</li>
- * <li>content for each row</li>
+ *   <li>id for the table</li>
+ *   <li>column model for each column</li>
+ *   <li>content for each row</li>
  * </ul>
  *
  * @author Ullrich Hafner
@@ -37,7 +35,7 @@ public abstract class TableModel {
      * @return the column definitions
      * @see <a href="https://datatables.net/manual/data/#Objects">DataTables API Reference</a>
      */
-    public final String getColumnsDefinition() {
+    public String getColumnsDefinition() {
         return getColumns().stream()
                 .map(TableColumn::getDefinition)
                 .collect(Collectors.joining(",", "[", "]"));
