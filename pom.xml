@@ -21,7 +21,7 @@
     <changelist>-SNAPSHOT</changelist>
     <datatables.version>1.10.20</datatables.version>
     <jquery3-api.version>3.4.1-1-beta1</jquery3-api.version>
-    <font-awesome-api.version>5.10.1-1-beta1</font-awesome-api.version>
+    <font-awesome-api.version>5.10.1-1-SNAPSHOT</font-awesome-api.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jenkins.version>2.138.4</jenkins.version>
