@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
     <version>3.53</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <artifactId>data-tables-api</artifactId>
@@ -20,8 +21,8 @@
     <revision>1.10.20-1-beta4</revision>
     <changelist>-SNAPSHOT</changelist>
     <datatables.version>1.10.20</datatables.version>
-    <jquery3-api.version>3.4.1-1-beta1</jquery3-api.version>
-    <font-awesome-api.version>5.10.1-1-beta1</font-awesome-api.version>
+    <jquery3-api.version>3.4.1-1-beta2-rc52.da76aa84ddb7</jquery3-api.version>
+    <font-awesome-api.version>5.10.1-1-beta2-rc45.a9ff245b4412</font-awesome-api.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jenkins.version>2.138.4</jenkins.version>
@@ -216,7 +217,9 @@
               <outputDirectory>${project.build.directory}/${project.artifactId}/webjars</outputDirectory>
               <resources>
                 <resource>
-                  <directory>${project.build.directory}/webjars/META-INF/resources/webjars/datatables/${datatables.version}</directory>
+                  <directory>
+                    ${project.build.directory}/webjars/META-INF/resources/webjars/datatables/${datatables.version}
+                  </directory>
                   <filtering>false</filtering>
                 </resource>
               </resources>
@@ -535,13 +538,17 @@
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>HEAD</tag>
+    <tag>${scmTag}</tag>
   </scm>
 
   <repositories>
     <repository>
       <id>repo.jenkins-ci.org</id>
       <url>https://repo.jenkins-ci.org/public/</url>
+    </repository>
+    <repository>
+      <id>incrementals.jenkins-ci.org</id>
+      <url>https://repo.jenkins-ci.org/incrementals/</url>
     </repository>
   </repositories>
 

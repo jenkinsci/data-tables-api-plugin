@@ -79,7 +79,8 @@ function bindTables($) {
                 // This row is already open - close it
                 row.child.hide();
                 tr.removeClass('shown');
-            } else {
+            }
+            else {
                 // Open this row
                 row.child($(this).data('description')).show();
                 tr.addClass('shown');
@@ -96,7 +97,7 @@ function bindTables($) {
         }
 
         // Add event listener that stores the order a user selects
-        table.on('order.dt', function (e) {
+        table.on('order.dt', function () {
             const order = table.DataTable().order();
             localStorage.setItem(id + '#orderBy', order[0][0]);
             localStorage.setItem(id + '#orderDirection', order[0][1]);
@@ -113,7 +114,8 @@ function bindTables($) {
             const order = [orderBy, orderDirection];
             try {
                 dataTable.order(order).draw();
-            } catch (ignore) { // TODO: find a way to determine the number of columns here
+            }
+            catch (ignore) { // TODO: find a way to determine the number of columns here
                 dataTable.order([[1, 'asc']]).draw();
             }
         }

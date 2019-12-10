@@ -14,6 +14,12 @@ import org.kohsuke.stapler.bind.JavaScriptMethod;
  * @author Ullrich Hafner
  */
 public abstract class DefaultAsyncTableContentProvider implements AsyncTableContentProvider {
+    @Override
+    @JavaScriptMethod
+    public String getTableRows(final String id) {
+        return toJsonArray(getTableModel(id).getRows());
+    }
+
     private String toJsonArray(final List<Object> rows) {
         try {
             return new ObjectMapper().writeValueAsString(rows);
@@ -22,11 +28,5 @@ public abstract class DefaultAsyncTableContentProvider implements AsyncTableCont
             throw new IllegalArgumentException(
                     String.format("Can't convert table rows '%s' to JSON object", rows), exception);
         }
-    }
-
-    @Override
-    @JavaScriptMethod
-    public String getTableRows(final String id) {
-        return toJsonArray(getTableModel(id).getRows());
     }
 }
