@@ -21,7 +21,7 @@
     <revision>1.10.20-1-beta4</revision>
     <changelist>-SNAPSHOT</changelist>
     <datatables.version>1.10.20</datatables.version>
-    <jquery3-api.version>3.4.1-1-beta2-rc52.da76aa84ddb7</jquery3-api.version>
+    <jquery3-api.version>3.4.1-1-SNAPSHOT</jquery3-api.version>
     <font-awesome-api.version>5.10.1-1-beta2-rc45.a9ff245b4412</font-awesome-api.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
