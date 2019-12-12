@@ -1,11 +1,14 @@
-<?jelly escape-by-default='true'?>
+  <?jelly escape-by-default='true'?>
 <!--
 Use it like <st:adjunct includes="io.jenkins.plugins.data-tables"/>
 -->
-<j:jelly xmlns:j="jelly:core">
+  <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
 
   <j:new var="h" className="hudson.Functions" />
   ${h.initPageVariables(context)}
+
+  <st:adjunct includes="io.jenkins.plugins.jquery3"/>
+  <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
 
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/luxon.min.js"/>
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/table.js"/>

@@ -1,16 +1,12 @@
-/* global jQuery, luxon, tableDataProxy */
-(function ($, luxon) {
-    $(document).ready(function () {
-        bindTables($, luxon);
-    });
-})(jQuery, luxon);
+/* global jQuery3, luxon, tableDataProxy */
+jQuery3(document).ready(function () {
+    bindTables();
+});
 
 /**
  * Binds all tables that have the class 'data-table' to a new JQuery DataTables instance.
- *
- * @param {Object} $ - JQuery
  */
-function bindTables($) {
+function bindTables() {
     /**
      * Creates the data table instance for the specified table element.
      */
@@ -58,31 +54,29 @@ function bindTables($) {
                 (function () {
                     const model = JSON.parse(t.responseObject());
                     dataTable.rows.add(model).draw();
-                    $('[data-toggle="tooltip"]').tooltip();
-                })(jQuery);
+                    jQuery3('[data-toggle="tooltip"]').tooltip();
+                })();
             });
         }
     }
 
-    const allTables = $('table.data-table');
+    const allTables = jQuery3('table.data-table');
     allTables.each(function () {
-        const table = $(this);
+        const table = jQuery3(this);
         const id = table.attr('id');
         const dataTable = createDataTable(table);
 
         // Add event listener for opening and closing details
         table.on('click', 'div.details-control', function () {
-            const tr = $(this).parents('tr');
+            const tr = jQuery3(this).parents('tr');
             const row = dataTable.row(tr);
 
             if (row.child.isShown()) {
-                // This row is already open - close it
                 row.child.hide();
                 tr.removeClass('shown');
             }
             else {
-                // Open this row
-                row.child($(this).data('description')).show();
+                row.child(jQuery3(this).data('description')).show();
                 tr.addClass('shown');
             }
         });
@@ -125,7 +119,7 @@ function bindTables($) {
             localStorage.setItem(id + '#table-length', len);
         });
         const storedLength = localStorage.getItem(id + '#table-length');
-        if ($.isNumeric(storedLength)) {
+        if (jQuery3.isNumeric(storedLength)) {
             dataTable.page.len(storedLength).draw();
         }
     });
