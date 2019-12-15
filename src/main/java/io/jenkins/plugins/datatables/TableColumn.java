@@ -1,6 +1,6 @@
-package io.jenkins.plugins.datatables.api;
+package io.jenkins.plugins.datatables;
 
-import io.jenkins.plugins.datatables.api.TableModel.DetailedColumnDefinition;
+import io.jenkins.plugins.datatables.TableModel.DetailedColumnDefinition;
 
 /**
  * Provides a model for table columns that are rendered with JQuery DataTables. The model consists of the following

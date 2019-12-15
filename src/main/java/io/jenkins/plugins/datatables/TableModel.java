@@ -1,4 +1,4 @@
-package io.jenkins.plugins.datatables.api;
+package io.jenkins.plugins.datatables;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,9 +1,9 @@
-package io.jenkins.plugins.datatables.api;
+package io.jenkins.plugins.datatables;
 
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import io.jenkins.plugins.datatables.api.TableColumn.ColumnCss;
+import io.jenkins.plugins.datatables.TableColumn.ColumnCss;
 
 import static io.jenkins.plugins.datatables.api.assertions.Assertions.*;
 
