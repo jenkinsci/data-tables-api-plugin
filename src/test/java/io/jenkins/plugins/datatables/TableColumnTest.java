@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import io.jenkins.plugins.datatables.TableColumn.ColumnCss;
 
-import static io.jenkins.plugins.datatables.api.assertions.Assertions.*;
+import static io.jenkins.plugins.datatables.assertions.Assertions.*;
 
 /**
  * Tests the class {@link TableColumn}.

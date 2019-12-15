@@ -12,7 +12,7 @@
   <groupId>io.jenkins.plugins</groupId>
   <packaging>hpi</packaging>
   <name>DataTables.net API Plugin</name>
-  <version>${revision}${changelist}</version>
+  <version>1.10.20-3-beta1</version>
   <description>Jenkins plug-that provides JQuery DataTables.</description>
   <url>https://github.com/jenkinsci/data-tables-plugin</url>
 
@@ -30,10 +30,10 @@
     <java.level>8</java.level>
     <jenkins-test-harness.version>2.49</jenkins-test-harness.version>
     <spotbugs.failOnError>false</spotbugs.failOnError>
-    <slf4j.version>1.7.28</slf4j.version>
+    <slf4j.version>1.7.29</slf4j.version>
     <codingstyle.version>0.3.0</codingstyle.version>
 
-    <module.name>${project.groupId}.data-tables</module.name>
+    <module.name>${project.groupId}.datatables</module.name>
 
     <!-- Library Dependencies Versions -->
     <error-prone.version>2.3.3</error-prone.version>
@@ -86,6 +86,16 @@
       <email>ullrich.hafner@gmail.com</email>
     </developer>
   </developers>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -473,12 +483,12 @@
         </executions>
         <configuration>
           <packages>
-            <package>io.jenkins.plugins.datatables.api</package>
+            <package>io.jenkins.plugins.datatables</package>
           </packages>
           <excludes>
             <exclude>.*ITest</exclude>
           </excludes>
-          <entryPointClassPackage>io.jenkins.plugins.datatables.api.assertions</entryPointClassPackage>
+          <entryPointClassPackage>io.jenkins.plugins.datatables.assertions</entryPointClassPackage>
           <cleanTargetDir>true</cleanTargetDir>
           <hierarchical>false</hierarchical>
           <generateBddAssertions>false</generateBddAssertions>
@@ -569,7 +579,7 @@
     <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>${scmTag}</tag>
+    <tag>data-tables-api-1.10.20-3-beta1</tag>
   </scm>
 
   <repositories>
