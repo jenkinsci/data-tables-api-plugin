@@ -61,6 +61,13 @@ function bindTables() {
     }
 
     const allTables = jQuery3('table.data-table');
+
+    function toggleDetailsColumnIcon(tr, from, to) {
+        const svg = tr.find("use");
+        const current = svg.attr("href");
+        svg.attr("href", current.replace(from, to))
+    }
+
     allTables.each(function () {
         const table = jQuery3(this);
         const id = table.attr('id');
@@ -74,10 +81,12 @@ function bindTables() {
             if (row.child.isShown()) {
                 row.child.hide();
                 tr.removeClass('shown');
+                toggleDetailsColumnIcon(tr, "minus-circle", "plus-circle");
             }
             else {
                 row.child(jQuery3(this).data('description')).show();
                 tr.addClass('shown');
+                toggleDetailsColumnIcon(tr, "plus-circle", "minus-circle");
             }
         });
 

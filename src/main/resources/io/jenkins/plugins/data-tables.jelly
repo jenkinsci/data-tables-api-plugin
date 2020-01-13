@@ -8,7 +8,6 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables"/>
   ${h.initPageVariables(context)}
 
   <st:adjunct includes="io.jenkins.plugins.jquery3"/>
-  <st:adjunct includes="io.jenkins.plugins.font-awesome"/>
   <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
 
   <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/dataTables.bootstrap4.min.css"/>
