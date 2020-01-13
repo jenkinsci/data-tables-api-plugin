@@ -1,6 +1,14 @@
 package io.jenkins.plugins.datatables;
 
+import edu.hm.hafner.util.VisibleForTesting;
+
+import j2html.tags.UnescapedText;
+
 import io.jenkins.plugins.datatables.TableModel.DetailedColumnDefinition;
+import io.jenkins.plugins.fontawesome.api.SvgTag;
+import io.jenkins.plugins.util.JenkinsFacade;
+
+import static j2html.TagCreator.*;
 
 /**
  * Provides a model for table columns that are rendered with JQuery DataTables. The model consists of the following
@@ -17,8 +25,23 @@ import io.jenkins.plugins.datatables.TableModel.DetailedColumnDefinition;
  * @author Ullrich Hafner
  */
 public class TableColumn {
+    @VisibleForTesting
+    static final String DETAILS_COLUMN_ICON_NAME = "plus-circle";
+
     private final String headerLabel;
     private final String definition;
+
+    public static String renderDetailsColumn(final String detailsText) {
+        return renderDetailsColumn(detailsText, new JenkinsFacade());
+    }
+
+    public static String renderDetailsColumn(final String detailsText, final JenkinsFacade jenkinsFacade) {
+        return div()
+                .withClass("details-control")
+                .attr("data-description", detailsText)
+                .with(new UnescapedText(new SvgTag(DETAILS_COLUMN_ICON_NAME, jenkinsFacade).withClasses("details-icon").render()))
+                .render();
+    }
 
     private ColumnCss headerClass = ColumnCss.NONE;
     private int width = 1;
