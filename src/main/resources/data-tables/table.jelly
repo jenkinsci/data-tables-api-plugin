@@ -9,16 +9,33 @@
       The model of the table.
     </st:attribute>
 
+    <st:attribute name="class" use="optional" type="String">
+      Optional classes to be added to the table.
+    </st:attribute>
+
   </st:documentation>
 
   <st:adjunct includes="io.jenkins.plugins.jquery3"/>
   <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
   <st:adjunct includes="io.jenkins.plugins.data-tables"/>
+  <j:if test="${model.tableConfiguration.useResponsive}">
+    <st:adjunct includes="io.jenkins.plugins.data-tables-responsive"/>
+  </j:if>
+  <j:if test="${model.tableConfiguration.useColReorder}">
+    <st:adjunct includes="io.jenkins.plugins.data-tables-colreorder"/>
+  </j:if>
+  <j:if test="${model.tableConfiguration.useButtons}">
+    <st:adjunct includes="io.jenkins.plugins.data-tables-buttons"/>
+  </j:if>
   <st:adjunct includes="io.jenkins.plugins.bind-tables"/>
 
   <div class="table-responsive">
-    <table class="table table-hover table-striped data-table"
-           data-columns-definition="${model.columnsDefinition}" id="${model.id}">
+    <j:if test="${model.tableConfiguration.useButtons}">
+      <div class="table-buttons-container clearfix"/>
+    </j:if>
+    <table class="table table-hover table-striped data-table ${class}"
+           data-columns-definition="${model.columnsDefinition}" id="${model.id}"
+           data-table-configuration="${model.tableConfigurationDefinition}">
       <colgroup>
         <j:forEach var="c" items="${model.columns}">
           <col class="col-width-${c.width}"/>

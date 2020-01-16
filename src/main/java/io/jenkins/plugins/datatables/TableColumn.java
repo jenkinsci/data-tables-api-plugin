@@ -56,7 +56,10 @@ public class TableColumn {
      */
     public TableColumn(final String headerLabel, final String dataPropertyName) {
         this.headerLabel = headerLabel;
-        definition = String.format("{\"data\": \"%s\"}", dataPropertyName);
+        definition = String.format("{"
+                + "  \"data\": \"%s\","
+                + "  \"defaultContent\": \"\""
+                + "}", dataPropertyName);
     }
 
     /**
@@ -75,6 +78,7 @@ public class TableColumn {
         definition = String.format("{"
                 + "  \"type\": \"%s\","
                 + "  \"data\": \"%s\","
+                + "  \"defaultContent\": \"\","
                 + "  \"render\": {"
                 + "     \"_\": \"display\","
                 + "     \"sort\": \"sort\""

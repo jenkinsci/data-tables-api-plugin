@@ -1,0 +1,19 @@
+<?jelly escape-by-default='true'?>
+<!--
+Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-responsive"/>
+-->
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
+
+  <j:new var="h" className="hudson.Functions"/>
+  ${h.initPageVariables(context)}
+
+  <st:adjunct includes="io.jenkins.plugins.jquery3"/>
+  <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
+  <st:adjunct includes="io.jenkins.plugins.data-tables"/>
+
+  <!--link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/colReorder.bootstrap4.scss"/-->
+
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/dataTables.colReorder.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/colReorder.bootstrap4.js"/>
+
+</j:jelly>
