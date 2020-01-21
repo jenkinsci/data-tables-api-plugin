@@ -24,6 +24,8 @@ public class TableConfiguration {
      * Make the table responsive, i.e. the columns wrap over to a child column.
      *
      * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/extensions/responsive/">https://datatables.net/extensions/responsive/</a>
      */
     public TableConfiguration responsive() {
         this.configuration.put("responsive", true);
@@ -44,6 +46,8 @@ public class TableConfiguration {
      * Enable reordering of table columns.
      *
      * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/extensions/colreorder/">https://datatables.net/extensions/colreorder/</a>
      */
     public TableConfiguration colReorder() {
         this.configuration.put("colReorder", true);
@@ -64,6 +68,8 @@ public class TableConfiguration {
      * Enable the default buttons.
      *
      * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/extensions/buttons/">https://datatables.net/extensions/buttons/</a>
      */
     public TableConfiguration buttons() {
         this.configuration.put("buttons", true);
@@ -78,6 +84,8 @@ public class TableConfiguration {
      *         List of buttons to use
      *
      * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/extensions/buttons/built-in">https://datatables.net/extensions/buttons/built-in</a> for more information on available buttons
      */
     public TableConfiguration buttons(final String... types) {
         this.configuration.put("buttons", types);
@@ -98,6 +106,8 @@ public class TableConfiguration {
      * Enable saving of the table state.
      *
      * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/reference/option/stateSave">https://datatables.net/reference/option/stateSave</a>
      */
     public TableConfiguration stateSave() {
         this.configuration.put("stateSave", true);

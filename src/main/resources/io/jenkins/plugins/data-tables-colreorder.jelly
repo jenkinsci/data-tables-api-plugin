@@ -1,6 +1,6 @@
 <?jelly escape-by-default='true'?>
 <!--
-Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-responsive"/>
+Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-colreorder"/>
 -->
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler">
 
