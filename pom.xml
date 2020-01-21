@@ -14,9 +14,8 @@
   <name>DataTables.net API Plugin</name>
   <version>${revision}${changelist}</version>
 
-  <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-
   <description>Jenkins plug-that provides JQuery DataTables.</description>
+  <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
     <revision>1.10.20-7-beta1</revision>
@@ -76,8 +75,6 @@
       <artifactId>font-awesome-api</artifactId>
       <version>${font-awesome-api.version}</version>
     </dependency>
-
-    <!-- Project Dependencies -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
