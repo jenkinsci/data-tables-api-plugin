@@ -11,9 +11,9 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-colreorder"/>
   <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
   <st:adjunct includes="io.jenkins.plugins.data-tables"/>
 
-  <!--link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/colReorder.bootstrap4.scss"/-->
+  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/colReorder.bootstrap4.min.css"/>
 
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/dataTables.colReorder.js"/>
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/colReorder.bootstrap4.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/dataTables.colReorder.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/colReorder.bootstrap4.min.js"/>
 
 </j:jelly>
