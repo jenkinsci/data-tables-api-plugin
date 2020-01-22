@@ -49,6 +49,24 @@ public abstract class TableModel {
     public abstract List<Object> getRows();
 
     /**
+     * Returns the configuration of a table. This may be overridden to change the configuration of a table.
+     *
+     * @return the configuration
+     */
+    public TableConfiguration getTableConfiguration() {
+        return new TableConfiguration();
+    }
+
+    /**
+     * Returns the configuration of this table as JSON object.
+     *
+     * @return the table configuration JSON
+     */
+    public String getTableConfigurationDefinition() {
+        return getTableConfiguration().getConfiguration();
+    }
+
+    /**
      * A column value attribute that provides a {@code display} and {@code sort} property so that a JQuery DataTables
      * can use different properties to sort and display a column.
      */

@@ -11,7 +11,7 @@ function bindTables() {
      * Creates the data table instance for the specified table element.
      */
     function createDataTable(table) {
-        return table.DataTable({
+        const defaultConfiguration = {
             language: {
                 emptyTable: 'Loading - please wait ...'
             },
@@ -41,7 +41,21 @@ function bindTables() {
                 }
             ],
             columns: JSON.parse(table.attr('data-columns-definition'))
-        });
+        };
+        const tableConfiguration = JSON.parse(table.attr('data-table-configuration'));
+        // overwrite/merge the default configuration with values from the provided table configuration
+        const dataTable = table.DataTable(Object.assign(defaultConfiguration, tableConfiguration));
+
+        // add the buttons to the top of the table
+        if (tableConfiguration.buttons) {
+            dataTable
+                .buttons()
+                .container()
+                .addClass('float-none mb-3')
+                .prependTo(jQuery3(dataTable.table().container()).closest('.table-responsive'));
+        }
+
+        return dataTable;
     }
 
     /**

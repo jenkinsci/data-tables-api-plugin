@@ -24,7 +24,7 @@ class TableColumnTest {
         TableColumn column = new TableColumn(LABEL, "one");
 
         assertThat(column).hasHeaderLabel(LABEL);
-        assertThat(column).hasDefinition("{\"data\": \"one\"}");
+        assertThat(column).hasDefinition("{  \"data\": \"one\",  \"defaultContent\": \"\"}");
         assertThat(column).hasHeaderClass(StringUtils.EMPTY);
         assertThat(column).hasWidth(1);
     }
@@ -35,7 +35,8 @@ class TableColumnTest {
 
         assertThat(column).hasHeaderLabel(LABEL);
         assertThat(column).hasDefinition("{  \"type\": \"integer\",  "
-                + "\"data\": \"one\",  "
+                + "\"data\": \"one\",  " 
+                + "\"defaultContent\": \"\",  "
                 + "\"render\": {     \"_\": \"display\",     \"sort\": \"sort\"  }}");
         assertThat(column).hasHeaderClass(StringUtils.EMPTY);
         assertThat(column).hasWidth(1);
@@ -48,7 +49,7 @@ class TableColumnTest {
                 .setWidth(WIDTH);
 
         assertThat(column).hasHeaderLabel(LABEL);
-        assertThat(column).hasDefinition("{\"data\": \"simple\"}");
+        assertThat(column).hasDefinition("{  \"data\": \"simple\",  \"defaultContent\": \"\"}");
         assertThat(column).hasHeaderClass("date");
         assertThat(column).hasWidth(WIDTH);
     }
