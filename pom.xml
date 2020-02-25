@@ -30,7 +30,7 @@
 
     <jquery3-api.version>3.4.1-7-beta1</jquery3-api.version>
     <font-awesome-api.version>5.12.0-5-beta1</font-awesome-api.version>
-    <bootstrap4-api.version>4.4.1-7-beta1</bootstrap4-api.version>
+    <bootstrap4-api.version>4.4.1-8-beta1-rc162.68e8bc4c2b14</bootstrap4-api.version>
     <plugin-util-api.version>0.1.0-beta10</plugin-util-api.version>
 
     <commons.lang.version>3.9</commons.lang.version>
