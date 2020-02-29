@@ -1,5 +1,5 @@
 tag-template: data-tables-api-$NEXT_PATCH_VERSION
-name-template: Forensics API $NEXT_PATCH_VERSION 🎁
+name-template: jQuery DataTables API $NEXT_PATCH_VERSION 🎁
 
 template: |
   $CHANGES

@@ -1,10 +1,10 @@
-# JQuery DataTables Jenkins Plugin
+# jQuery DataTables Jenkins Plugin
 
 [![Jenkins Version](https://img.shields.io/badge/Jenkins-2.138.4-green.svg?label=min.%20Jenkins)](https://jenkins.io/download/)
 ![JDK8](https://img.shields.io/badge/jdk-8-yellow.svg?label=min.%20JDK)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Provides [DataTables](https://datatables.net) for Jenkins Plugins.
+Provides [jQuery DataTables](https://datatables.net) for Jenkins Plugins.
 
 This plugin contains the latest [WebJars](https://www.webjars.org) release and corresponding Jenkins UI elements. 
 
