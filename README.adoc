@@ -25,14 +25,7 @@ This plugin contains the latest https://www.webjars.org[WebJars] release and cor
 
 A common UI element to show plugin details is a table control. Most plugins (and Jenkins core) typically use
 plain HTML tables. However, if the table should show a large number of rows then using a more sophisticated control
-like  https://datatables.net[DataTables] makes more sense. Using this JS based table control provides additional
-features at no cost:
-
-- filter results by text search
-- provide pagination of the result set
-- sort data by multiple columns at once
-- obtain table rows using Ajax calls
-- show and hide columns based on the screen resolution
+like  https://datatables.net[DataTables] makes more sense.
 
 In order to use https://datatables.net[DataTables] in a view there are two options, you can either decorate existing
 static HTML tables (see <<tables-static>>) or populate the table content using Ajax (see <<tables-dynamic>>). Both
@@ -85,7 +78,7 @@ https://github.com/jenkinsci/warnings-ng-plugin/blob/master/src/main/resources/i
 in the warnings plugin to see how such a table can be decorated.
 
 [#tables-dynamic]
-==== Tables with dynamic model based content
+=== Tables with dynamic model based content
 
 While static HTML tables are easy to implement, they have several limitations. So it makes sense to follow a more
 sophisticating approach. Typically, tables in user interfaces are defined by using a corresponding table (and row) model.
@@ -113,7 +106,7 @@ In <<forensics-table-model>> a diagram of the corresponding classes in the Foren
 .Table model of the Forensics plugin
 image::table-model.png[Tabel model]
 
-===== Table column model
+==== Table column model
 
 This first thing a table model class defines is a model of the available columns by creating corresponding
  `TableColumn` instances. For each column you need to specify a header label and the name of the bean property that
@@ -122,7 +115,7 @@ show one distinct property of such a bean, see next section). You can
 use any of the https://datatables.net/reference/option/columns.type[supported column types] by simply providing a
 `String` or `Integer` based column.
 
-===== Table rows content
+==== Table rows content
 
 Additionally, a table model class provides the content of the rows. This `getRows()` method
 will be invoked asynchronously using an Ajax call. Typically, this method simply returns a list of Java Bean instances,
