@@ -1,5 +1,6 @@
 # jQuery DataTables Jenkins Plugin
 
+[![Jenkins Plugin](https://img.shields.io/jenkins/plugin/v/data-tables-api.svg?label=latest%20version)](https://plugins.jenkins.io/data-tables-api)
 [![Jenkins Version](https://img.shields.io/badge/Jenkins-2.138.4-green.svg?label=min.%20Jenkins)](https://jenkins.io/download/)
 ![JDK8](https://img.shields.io/badge/jdk-8-yellow.svg?label=min.%20JDK)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
