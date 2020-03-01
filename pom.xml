@@ -14,7 +14,7 @@
   <name>DataTables.net API Plugin</name>
   <version>${revision}${changelist}</version>
 
-  <description>Jenkins plug-that provides JQuery DataTables.</description>
+  <description>Provides jQuery DataTables for Jenkins plugins.</description>
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
