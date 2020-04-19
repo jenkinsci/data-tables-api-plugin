@@ -31,7 +31,7 @@
     <jquery3-api.version>3.4.1-10</jquery3-api.version>
     <font-awesome-api.version>5.13.0-1</font-awesome-api.version>
     <bootstrap4-api.version>4.4.1-12</bootstrap4-api.version>
-    <plugin-util-api.version>1.0.2</plugin-util-api.version>
+    <plugin-util-api.version>1.2.0</plugin-util-api.version>
 
     <commons.lang.version>3.9</commons.lang.version>
     <jackson-databind.version>2.9.10.3</jackson-databind.version>
