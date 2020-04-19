@@ -3,10 +3,10 @@
 
 = jQuery DataTables Jenkins Plugin
 
-image:https://img.shields.io/jenkins/plugin/v/data-tables-api.svg?label=latest%20version[Jenkins Plugin, link={https://plugins.jenkins.io/data-tables-api}]
-image:https://img.shields.io/badge/Jenkins-2.204.4-green.svg?label=min.%20Jenkins[Jenkins Version, link={https://jenkins.io/download/lts}]
+image:https://img.shields.io/jenkins/plugin/v/data-tables-api.svg?label=latest%20version[Jenkins Plugin, link=https://plugins.jenkins.io/data-tables-api]
+image:https://img.shields.io/badge/Jenkins-2.204.4-green.svg?label=min.%20Jenkins[Jenkins Version, link=https://jenkins.io/download/lts]
 image:https://img.shields.io/badge/jdk-8-yellow.svg?label=min.%20JDK[JDK8]
-image:https://img.shields.io/badge/license-MIT-yellow.svg[License: MIT, link={https://opensource.org/licenses/MIT}]
+image:https://img.shields.io/badge/license-MIT-yellow.svg[License: MIT, link=https://opensource.org/licenses/MIT]
 
 Provides https://datatables.net[DataTables] for Jenkins Plugins.
 DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations
@@ -178,6 +178,6 @@ You can find several examples of Jenkins views that use jQuery in the
 https://github.com/jenkinsci/warnings-ng-plugin[Warnings Next Generation plugin]
 and in the https://github.com/jenkinsci/warnings-ng-plugin[Forensics plugin].
 
-image:https://ci.jenkins.io/job/Plugins/job/data-tables-api-plugin/job/master/badge/icon[Jenkins, link={https://ci.jenkins.io/job/Plugins/job/data-tables-api-plugin/job/master/}]
-image:https://github.com/jenkinsci/data-tables-api-plugin/workflows/CI%20on%20all%20platforms/badge.svg?branch=master[GitHub Actions, link={https://github.com/jenkinsci/data-tables-api-plugin/actions}]
-image:https://img.shields.io/github/issues-pr/jenkinsci/data-tables-api-plugin.svg[GitHub pull requests, link={https://github.com/jenkinsci/data-tables-api-plugin/pulls}]
+image:https://ci.jenkins.io/job/Plugins/job/data-tables-api-plugin/job/master/badge/icon[Jenkins, link=https://ci.jenkins.io/job/Plugins/job/data-tables-api-plugin/job/master/]
+image:https://github.com/jenkinsci/data-tables-api-plugin/workflows/CI%20on%20all%20platforms/badge.svg?branch=master[GitHub Actions, link=https://github.com/jenkinsci/data-tables-api-plugin/actions]
+image:https://img.shields.io/github/issues-pr/jenkinsci/data-tables-api-plugin.svg[GitHub pull requests, link=https://github.com/jenkinsci/data-tables-api-plugin/pulls]
