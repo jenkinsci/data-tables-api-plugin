@@ -34,7 +34,7 @@
     <plugin-util-api.version>1.2.0</plugin-util-api.version>
 
     <commons.lang.version>3.9</commons.lang.version>
-    <jackson-databind.version>2.9.10.3</jackson-databind.version>
+    <jackson2-api.version>2.9.10</jackson2-api.version>
   </properties>
 
   <licenses>
@@ -98,9 +98,9 @@
       <version>${font-awesome-api.version}</version>
     </dependency>
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson-databind.version}</version>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>jackson2-api</artifactId>
+      <version>${jackson2-api.version}</version>
     </dependency>
 
     <!-- Test Dependencies -->
