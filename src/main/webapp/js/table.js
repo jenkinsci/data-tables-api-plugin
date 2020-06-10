@@ -129,7 +129,8 @@ jQuery3(document).ready(function () {
                 const order = [orderBy, orderDirection];
                 try {
                     dataTable.order(order).draw();
-                } catch (ignore) { // TODO: find a way to determine the number of columns here
+                }
+                catch (ignore) { // TODO: find a way to determine the number of columns here
                     dataTable.order([[1, 'asc']]).draw();
                 }
             }
