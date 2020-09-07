@@ -8,19 +8,19 @@ table.dataTable {
 
 /* Change color of active pagination, to fit to the material blue grey css */
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-    background-color: #607d8b;
-    border-color: #607d8b;
+    background-color: #b4b4b4;
+    border-color: #b4b4b4;
 }
 
 /* Change color of inactive pagination, to fit to the material blue grey css */
 .pagination > li > a, .pagination > li > span {
-    color: #607d8b;
+    color: #b4b4b4;
 }
 
 /* Change color of active pagination, to fit to the material blue grey css */
 .page-item.active .page-link {
-    background-color: #607d8b;
-    border-color: #607d8b;
+    background-color: #b4b4b4;
+    border-color: #b4b4b4;
 }
 
 /* Add padding-top for more space */
