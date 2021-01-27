@@ -31,15 +31,34 @@ public class TableColumn {
     private final String headerLabel;
     private final String definition;
 
+    /**
+     * Renders a expandable details column with the specified text.
+     *
+     * @param detailsText
+     *         the text to show if the column has been expanded.
+     *
+     * @return the HTML div to create the details column
+     */
     public static String renderDetailsColumn(final String detailsText) {
         return renderDetailsColumn(detailsText, new JenkinsFacade());
     }
 
+    /**
+     * Renders a expandable details column with the specified text.
+     *
+     * @param detailsText
+     *         the text to show if the column has been expanded.
+     * @param jenkinsFacade
+     *         facade for Jenkins API calls
+     *
+     * @return the HTML div to create the details column
+     */
     public static String renderDetailsColumn(final String detailsText, final JenkinsFacade jenkinsFacade) {
         return div()
                 .withClass("details-control")
                 .attr("data-description", detailsText)
-                .with(new UnescapedText(new SvgTag(DETAILS_COLUMN_ICON_NAME, jenkinsFacade).withClasses("details-icon").render()))
+                .with(new UnescapedText(
+                        new SvgTag(DETAILS_COLUMN_ICON_NAME, jenkinsFacade).withClasses("details-icon").render()))
                 .render();
     }
 
@@ -101,8 +120,8 @@ public class TableColumn {
     }
 
     /**
-     * Sets the width of the column. Will be expanded to the class {@code col-width-[width]}, see
-     * {@code jenkins-style.css} for details about the actual percentages.
+     * Sets the width of the column. Will be expanded to the class {@code col-width-[width]}, see {@code
+     * jenkins-style.css} for details about the actual percentages.
      *
      * @param width
      *         the width CSS class to select for the column
@@ -138,10 +157,14 @@ public class TableColumn {
         /** No special rendering, the display property will be shown as such. */
         NONE(""),
         /**
-         * Dates will be shown using Luxon. The display value will be a human friendly relative time like
-         * "two weeks ago", rather than an absolute time. A tooltip is available that shows the absolute time.
+         * Dates will be shown using Luxon. The display value will be a human friendly relative time like "two weeks
+         * ago", rather than an absolute time. A tooltip is available that shows the absolute time.
          */
         DATE("date"),
+        /**
+         * Numbers will be shown right aligned so they can be compared more easily..
+         */
+        NUMBER("text-right"),
         /** Disables sorting of the column. Rendering is the same as with {@code NONE}. */
         NO_SORT("nosort");
 
