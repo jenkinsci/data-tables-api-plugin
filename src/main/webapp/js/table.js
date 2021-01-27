@@ -21,6 +21,10 @@ jQuery3(document).ready(function () {
                         orderable: false
                     },
                     {
+                        targets: 'text-right', // All columns with the '.text-right' class in the <th>
+                        className: 'text-right'
+                    },
+                    {
                         targets: 'date', // All columns with the '.date' class in the <th>
                         render: function (data, type, _row, _meta) {
                             if (type === 'display') {
