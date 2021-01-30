@@ -65,4 +65,19 @@ class TableColumnTest {
                         + "</svg>"
                         + "</div>");
     }
+
+    @Test
+    void shouldCreateHiddenColumn() {
+        TableColumn column = new TableColumn(LABEL, "Hidden", "String")
+                .setHeaderClass(ColumnCss.HIDDEN)
+                .setWidth(0);
+
+        assertThat(column).hasHeaderLabel(LABEL);
+        assertThat(column).hasDefinition("{  \"type\": \"String\",  "
+                + "\"data\": \"Hidden\",  "
+                + "\"defaultContent\": \"\",  "
+                + "\"render\": {     \"_\": \"display\",     \"sort\": \"sort\"  }}");
+        assertThat(column).hasHeaderClass("hidden");
+        assertThat(column).hasWidth(0);
+    }
 }

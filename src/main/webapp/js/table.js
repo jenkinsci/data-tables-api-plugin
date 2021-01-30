@@ -40,6 +40,12 @@ jQuery3(document).ready(function () {
                                 return data;
                             }
                         }
+                    },
+                    {
+                        targets: 'hidden', // All columns with the '.hidden' class in the <th>
+                        visible: false,
+                        searchable: true,
+                        orderable: false // There is no point in allowing sort by this column if it's not visible.
                     }
                 ],
                 columns: JSON.parse(table.attr('data-columns-definition'))
