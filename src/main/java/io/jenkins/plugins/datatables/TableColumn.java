@@ -166,7 +166,9 @@ public class TableColumn {
          */
         NUMBER("text-right"),
         /** Disables sorting of the column. Rendering is the same as with {@code NONE}. */
-        NO_SORT("nosort");
+        NO_SORT("nosort"),
+        /** Hides the column for view. It still exists and responds to searching */
+        HIDDEN("hidden");
 
         private final String cssClass;
 
