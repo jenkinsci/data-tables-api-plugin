@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jvnet.hudson.plugins</groupId>
     <artifactId>analysis-pom</artifactId>
-    <version>4.7.0</version>
+    <version>5.0.0-beta-1</version>
     <relativePath />
   </parent>
 
@@ -31,10 +31,7 @@
     <jquery3-api.version>3.5.1-2</jquery3-api.version>
     <font-awesome-api.version>5.15.2-1</font-awesome-api.version>
     <bootstrap4-api.version>4.6.0-1</bootstrap4-api.version>
-    <plugin-util-api.version>1.7.0</plugin-util-api.version>
-
-    <commons.lang.version>3.9</commons.lang.version>
-    <jackson2-api.version>2.11.1</jackson2-api.version>
+    <plugin-util-api.version>2.0.0-rc274.6fb09404abba</plugin-util-api.version>
   </properties>
 
   <licenses>
@@ -77,6 +74,7 @@
       <version>${datatables-buttons.version}</version>
       <scope>provided</scope>
     </dependency>
+
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>plugin-util-api</artifactId>
@@ -85,22 +83,18 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>jquery3-api</artifactId>
-      <version>${jquery3-api.version}</version>
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>bootstrap4-api</artifactId>
-      <version>${bootstrap4-api.version}</version>
     </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>font-awesome-api</artifactId>
-      <version>${font-awesome-api.version}</version>
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>jackson2-api</artifactId>
-      <version>${jackson2-api.version}</version>
     </dependency>
 
     <!-- Test Dependencies -->
