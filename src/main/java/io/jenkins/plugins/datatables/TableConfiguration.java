@@ -13,7 +13,6 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
  * @author Andreas Pabst
  */
 public class TableConfiguration {
-
     private final Map<String, Object> configuration = new HashMap<>();
 
     private boolean useResponsive = false;
@@ -28,8 +27,8 @@ public class TableConfiguration {
      * @see <a href="https://datatables.net/extensions/responsive/">https://datatables.net/extensions/responsive/</a>
      */
     public TableConfiguration responsive() {
-        this.configuration.put("responsive", true);
-        this.useResponsive = true;
+        configuration.put("responsive", true);
+        useResponsive = true;
         return this;
     }
 
@@ -50,8 +49,8 @@ public class TableConfiguration {
      * @see <a href="https://datatables.net/extensions/colreorder/">https://datatables.net/extensions/colreorder/</a>
      */
     public TableConfiguration colReorder() {
-        this.configuration.put("colReorder", true);
-        this.useColReorder = true;
+        configuration.put("colReorder", true);
+        useColReorder = true;
         return this;
     }
 
@@ -72,8 +71,8 @@ public class TableConfiguration {
      * @see <a href="https://datatables.net/extensions/buttons/">https://datatables.net/extensions/buttons/</a>
      */
     public TableConfiguration buttons() {
-        this.configuration.put("buttons", true);
-        this.useButtons = true;
+        configuration.put("buttons", true);
+        useButtons = true;
         return this;
     }
 
@@ -85,11 +84,11 @@ public class TableConfiguration {
      *
      * @return this {@link TableConfiguration} for chaining methods
      *
-     * @see <a href="https://datatables.net/extensions/buttons/built-in">https://datatables.net/extensions/buttons/built-in</a> for more information on available buttons
+     * @see <a href="https://datatables.net/extensions/buttons/built-in">https://datatables.net/extensions/buttons/built-in</a>
      */
     public TableConfiguration buttons(final String... types) {
-        this.configuration.put("buttons", types);
-        this.useButtons = true;
+        configuration.put("buttons", types);
+        useButtons = true;
         return this;
     }
 
@@ -110,7 +109,7 @@ public class TableConfiguration {
      * @see <a href="https://datatables.net/reference/option/stateSave">https://datatables.net/reference/option/stateSave</a>
      */
     public TableConfiguration stateSave() {
-        this.configuration.put("stateSave", true);
+        configuration.put("stateSave", true);
         return this;
     }
 

@@ -3,7 +3,6 @@ package io.jenkins.plugins.datatables;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import io.jenkins.plugins.datatables.TableColumn.*;
 import io.jenkins.plugins.util.JenkinsFacade;
 
 import static io.jenkins.plugins.datatables.TableColumn.*;
@@ -35,7 +34,7 @@ class TableColumnTest {
 
         assertThat(column).hasHeaderLabel(LABEL);
         assertThat(column).hasDefinition("{  \"type\": \"integer\",  "
-                + "\"data\": \"one\",  " 
+                + "\"data\": \"one\",  "
                 + "\"defaultContent\": \"\",  "
                 + "\"render\": {     \"_\": \"display\",     \"sort\": \"sort\"  }}");
         assertThat(column).hasHeaderClass(StringUtils.EMPTY);
@@ -59,7 +58,7 @@ class TableColumnTest {
         JenkinsFacade jenkinsFacade = mock(JenkinsFacade.class);
         when(jenkinsFacade.getImagePath(DETAILS_COLUMN_ICON_NAME)).thenReturn("/path/to/icon");
 
-        assertThat(TableColumn.renderDetailsColumn("details text", jenkinsFacade))
+        assertThat(renderDetailsColumn("details text", jenkinsFacade))
                 .isEqualTo("<div class=\"details-control\" data-description=\"details text\">"
                         + "<svg class=\"details-icon svg-icon\"><use href></use>"
                         + "</svg>"
