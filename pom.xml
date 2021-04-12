@@ -24,7 +24,7 @@
 
     <datatables-responsive.version>2.2.7</datatables-responsive.version>
     <datatables-colreorder.version>1.5.2</datatables-colreorder.version>
-    <datatables-buttons.version>1.6.1</datatables-buttons.version>
+    <datatables-buttons.version>1.7.0</datatables-buttons.version>
 
     <module.name>${project.groupId}.datatables</module.name>
 
