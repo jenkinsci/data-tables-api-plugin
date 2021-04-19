@@ -8,12 +8,12 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-colreorder"/>
   ${h.initPageVariables(context)}
 
   <st:adjunct includes="io.jenkins.plugins.jquery3"/>
-  <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
+  <st:adjunct includes="io.jenkins.plugins.bootstrap5"/>
   <st:adjunct includes="io.jenkins.plugins.data-tables"/>
 
-  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/colReorder.bootstrap4.min.css"/>
+  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/css/colReorder.bootstrap4.min.css"/>
 
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/dataTables.colReorder.min.js"/>
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/colReorder.bootstrap4.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/dataTables.colReorder.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/colReorder.bootstrap4.min.js"/>
 
 </j:jelly>

@@ -8,12 +8,12 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables"/>
   ${h.initPageVariables(context)}
 
   <st:adjunct includes="io.jenkins.plugins.jquery3"/>
-  <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
+  <st:adjunct includes="io.jenkins.plugins.bootstrap5"/>
 
-  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/webjars/css/dataTables.bootstrap4.min.css"/>
+  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/css/dataTables.bootstrap4.min.css"/>
   <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/css/jenkins-style.css"/>
 
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/jquery.dataTables.min.js"/>
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/webjars/js/dataTables.bootstrap4.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/jquery.dataTables.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/dataTables.bootstrap4.min.js"/>
 
 </j:jelly>

@@ -6,6 +6,10 @@
     "doc": "doc"
   },
   "dependencies": {
+    "datatables.net-bs4": "^1.10.24",
+    "datatables.net-buttons-bs4": "^1.7.0",
+    "datatables.net-colreorder-bs4": "^1.5.3",
+    "datatables.net-responsive-bs4": "^2.2.7",
     "remark-cli": "^6.0.1",
     "remark-lint": "^6.0.5",
     "remark-preset-lint-recommended": "^3.0.2"

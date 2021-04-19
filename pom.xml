@@ -113,18 +113,28 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.11.3</version>
         <executions>
           <execution>
-            <id>unpack-dependencies</id>
-            <phase>generate-resources</phase>
+            <id>install node and npm</id>
             <goals>
-              <goal>unpack-dependencies</goal>
+              <goal>install-node-and-npm</goal>
             </goals>
+            <phase>generate-resources</phase>
             <configuration>
-              <outputDirectory>${project.build.directory}/webjars</outputDirectory>
-              <includeArtifactIds>datatables,datatables-responsive,datatables-colreorder,datatables-buttons</includeArtifactIds>
+              <nodeVersion>v14.16.0</nodeVersion>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm install</id>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <phase>generate-resources</phase>
+            <configuration>
+              <arguments>install</arguments>
             </configuration>
           </execution>
         </executions>
@@ -134,36 +144,72 @@
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
           <execution>
-            <id>copy-resources</id>
+            <id>copy-js-resources</id>
             <phase>process-resources</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
             <configuration>
-              <outputDirectory>${project.build.directory}/${project.artifactId}/webjars</outputDirectory>
+              <outputDirectory>${project.build.directory}/${project.artifactId}/js</outputDirectory>
               <resources>
                 <resource>
-                  <directory>
-                    ${project.build.directory}/webjars/META-INF/resources/webjars/datatables/${datatables.version}
-                  </directory>
+                  <directory>${project.basedir}/node_modules/datatables.net/js</directory>
                   <filtering>false</filtering>
                 </resource>
                 <resource>
-                  <directory>
-                    ${project.build.directory}/webjars/META-INF/resources/webjars/datatables-responsive/${datatables-responsive.version}
-                  </directory>
+                  <directory>${project.basedir}/node_modules/datatables.net-bs4/js</directory>
                   <filtering>false</filtering>
                 </resource>
                 <resource>
-                  <directory>
-                    ${project.build.directory}/webjars/META-INF/resources/webjars/datatables-colreorder/${datatables-colreorder.version}
-                  </directory>
+                  <directory>${project.basedir}/node_modules/datatables.net-buttons/js</directory>
                   <filtering>false</filtering>
                 </resource>
                 <resource>
-                  <directory>
-                    ${project.build.directory}/webjars/META-INF/resources/webjars/datatables-buttons/${datatables-buttons.version}
-                  </directory>
+                  <directory>${project.basedir}/node_modules/datatables.net-buttons-bs4/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-colreorder/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-colreorder-bs4/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-responsive/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-responsive-bs4/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-css-resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/${project.artifactId}/css</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-bs4/css</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-buttons-bs4/css</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-colreorder-bs4/css</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-responsive-bs4/css</directory>
                   <filtering>false</filtering>
                 </resource>
               </resources>
