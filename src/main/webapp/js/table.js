@@ -1,4 +1,4 @@
-/* global jQuery3, luxon, tableDataProxy */
+/* global jQuery3, luxon, tableDataProxy, bootstrap5 */
 jQuery3(document).ready(function () {
     /**
      * Binds all tables that have the class 'data-table' to a new JQuery DataTables instance.
@@ -32,7 +32,7 @@ jQuery3(document).ready(function () {
                                     return '-';
                                 }
                                 var dateTime = luxon.DateTime.fromMillis(data * 1000);
-                                return '<span data-toggle="tooltip" data-placement="bottom" title="'
+                                return '<span data-bs-toggle="tooltip" data-bs-placement="bottom" title="'
                                     + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">'
                                     + dateTime.toRelative({locale: 'en'}) + '</span>';
                             }
@@ -53,7 +53,6 @@ jQuery3(document).ready(function () {
             const tableConfiguration = JSON.parse(table.attr('data-table-configuration'));
             // overwrite/merge the default configuration with values from the provided table configuration
             const dataTable = table.DataTable(Object.assign(defaultConfiguration, tableConfiguration));
-
             // add the buttons to the top of the table
             if (tableConfiguration.buttons) {
                 dataTable
@@ -76,7 +75,10 @@ jQuery3(document).ready(function () {
                     (function () {
                         const model = JSON.parse(t.responseObject());
                         dataTable.rows.add(model).draw();
-                        jQuery3('[data-toggle="tooltip"]').tooltip();
+                        jQuery3('[data-bs-toggle="tooltip"]').each(function () {
+                            const tooltip = new bootstrap5.Tooltip(jQuery3(this)[0]);
+                            tooltip.enable();
+                        });
                     })();
                 });
             }
