@@ -11,10 +11,10 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-buttons"/>
   <st:adjunct includes="io.jenkins.plugins.bootstrap5"/>
   <st:adjunct includes="io.jenkins.plugins.data-tables"/>
 
-  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/css/buttons.bootstrap4.min.css"/>
+  <link type="text/css" rel="stylesheet" href="${resURL}/plugin/data-tables-api/css/buttons.bootstrap5.min.css"/>
 
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/dataTables.buttons.min.js"/>
-  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/buttons.bootstrap4.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/buttons.bootstrap5.min.js"/>
 
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/buttons.colVis.min.js"/>
 </j:jelly>
