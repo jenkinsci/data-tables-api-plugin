@@ -16,7 +16,7 @@
   </st:documentation>
 
   <st:adjunct includes="io.jenkins.plugins.jquery3"/>
-  <st:adjunct includes="io.jenkins.plugins.bootstrap4"/>
+  <st:adjunct includes="io.jenkins.plugins.bootstrap5"/>
   <st:adjunct includes="io.jenkins.plugins.data-tables"/>
   <j:if test="${model.tableConfiguration.useResponsive}">
     <st:adjunct includes="io.jenkins.plugins.data-tables-responsive"/>
