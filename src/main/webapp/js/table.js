@@ -75,10 +75,6 @@ jQuery3(document).ready(function () {
                     (function () {
                         const model = JSON.parse(t.responseObject());
                         dataTable.rows.add(model).draw();
-                        jQuery3('[data-bs-toggle="tooltip"]').each(function () {
-                            const tooltip = new bootstrap5.Tooltip(jQuery3(this)[0]);
-                            tooltip.enable();
-                        });
                     })();
                 });
             }
@@ -112,6 +108,13 @@ jQuery3(document).ready(function () {
                     tr.addClass('shown');
                     toggleDetailsColumnIcon(tr, "plus-circle", "minus-circle");
                 }
+            });
+
+            table.on('draw.dt', function () {
+                table.find('[data-bs-toggle="tooltip"]').each(function () {
+                    const tooltip = new bootstrap5.Tooltip(jQuery3(this)[0]);
+                    tooltip.enable();
+                });
             });
 
             if (table.is(":visible")) {
