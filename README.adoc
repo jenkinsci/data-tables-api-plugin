@@ -7,7 +7,7 @@ image:https://img.shields.io/badge/Jenkins-2.263.1-green.svg?label=min.%20Jenkin
 image:https://ci.jenkins.io/job/Plugins/job/data-tables-api-plugin/job/master/badge/icon?subject=Jenkins%20CI[Jenkins, link=https://ci.jenkins.io/job/Plugins/job/data-tables-api-plugin/job/master/]
 image:https://github.com/jenkinsci/data-tables-api-plugin/workflows/GitHub%20CI/badge.svg?branch=master[GitHub Actions, link=https://github.com/jenkinsci/data-tables-api-plugin/actions]
 
-Provides https://datatables.net[DataTables] for Jenkins Plugins.
+Provides for Jenkins Plugins.
 DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, built upon the foundations
 of progressive enhancement, that adds all of these advanced features to any HTML table:
 
@@ -18,7 +18,8 @@ of progressive enhancement, that adds all of these advanced features to any HTML
 ** Easily theme-able
 ** Mobile friendly
 
-This plugin contains the latest https://www.webjars.org[WebJars] release and corresponding Jenkins UI elements.
+This plugin contains JS and CSS files of the latest https://datatables.net[DataTables] release and corresponding
+Jenkins UI elements (Java data model). It also contains some additional DataTables plugins.
 
 == How to use the plugin
 
