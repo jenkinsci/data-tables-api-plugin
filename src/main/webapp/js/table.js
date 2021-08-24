@@ -21,8 +21,8 @@ jQuery3(document).ready(function () {
                         orderable: false
                     },
                     {
-                        targets: 'text-right', // All columns with the '.text-right' class in the <th>
-                        className: 'text-right'
+                        targets: 'text-end', // All columns with the '.text-right' class in the <th>
+                        className: 'text-end'
                     },
                     {
                         targets: 'date', // All columns with the '.date' class in the <th>
