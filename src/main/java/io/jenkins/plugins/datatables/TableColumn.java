@@ -162,9 +162,9 @@ public class TableColumn {
          */
         DATE("date"),
         /**
-         * Numbers will be shown right aligned so they can be compared more easily..
+         * Numbers will be shown right aligned, so they can be compared more easily.
          */
-        NUMBER("text-right"),
+        NUMBER("text-end"),
         /** Disables sorting of the column. Rendering is the same as with {@code NONE}. */
         NO_SORT("nosort"),
         /** Hides the column for view. It still exists and responds to searching */
