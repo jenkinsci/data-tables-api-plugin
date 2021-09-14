@@ -162,6 +162,11 @@ public class TableColumn {
          */
         DATE("date"),
         /**
+         * Percentages (values in the interval [0,1]) will be rendered correctly as a percentage using the native
+         * JS locale sensitive rendering.
+         */
+        PERCENTAGE("percentage"),
+        /**
          * Numbers will be shown right aligned, so they can be compared more easily.
          */
         NUMBER("text-end"),
