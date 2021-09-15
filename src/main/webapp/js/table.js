@@ -43,6 +43,7 @@ jQuery3(document).ready(function () {
                     },
                     {
                         targets: 'percentage', // All columns with the '.percentage' class in the <th>
+                        className: 'text-end',
                         render: function (data, type, _row, _meta) {
                             if (isNaN(data)) {
                                 return data;
