@@ -33,6 +33,12 @@ tfoot {
     padding-top: 20px;
 }
 
+/* Add color for search (filter) highlighting */
+.highlight {
+    background-color: var(--menu-selected-color);
+    color: inherit;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------- */
 /* DataTables Details                                                                                                  */
 /* ------------------------------------------------------------------------------------------------------------------- */
