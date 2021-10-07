@@ -3,7 +3,7 @@ jQuery3(document).ready(function () {
     /**
      * Binds all tables that have the class 'data-table' to a new JQuery DataTables instance.
      */
-    function bindTables() {
+    function bindTables($) {
         /**
          * Creates the data table instance for the specified table element.
          */
@@ -70,7 +70,7 @@ jQuery3(document).ready(function () {
                     .buttons()
                     .container()
                     .addClass('float-none mb-3')
-                    .prependTo(jQuery3(dataTable.table().container()).closest('.table-responsive'));
+                    .prependTo($(dataTable.table().container()).closest('.table-responsive'));
             }
 
             return dataTable;
@@ -91,7 +91,7 @@ jQuery3(document).ready(function () {
             }
         }
 
-        const allTables = jQuery3('table.data-table');
+        const allTables = $('table.data-table');
 
         function toggleDetailsColumnIcon(tr, from, to) {
             const svg = tr.find("use");
@@ -100,13 +100,13 @@ jQuery3(document).ready(function () {
         }
 
         allTables.each(function () {
-            const table = jQuery3(this);
+            const table = $(this);
             const id = table.attr('id');
             const dataTable = createDataTable(table);
 
             // Add event listener for opening and closing details
             table.on('click', 'div.details-control', function () {
-                const tr = jQuery3(this).parents('tr');
+                const tr = $(this).parents('tr');
                 const row = dataTable.row(tr);
 
                 if (row.child.isShown()) {
@@ -115,7 +115,7 @@ jQuery3(document).ready(function () {
                     toggleDetailsColumnIcon(tr, "minus-circle", "plus-circle");
                 }
                 else {
-                    row.child(jQuery3(this).data('description')).show();
+                    row.child($(this).data('description')).show();
                     tr.addClass('shown');
                     toggleDetailsColumnIcon(tr, "plus-circle", "minus-circle");
                 }
@@ -123,7 +123,7 @@ jQuery3(document).ready(function () {
 
             table.on('draw.dt', function () {
                 table.find('[data-bs-toggle="tooltip"]').each(function () {
-                    const tooltip = new bootstrap5.Tooltip(jQuery3(this)[0]);
+                    const tooltip = new bootstrap5.Tooltip($(this)[0]);
                     tooltip.enable();
                 });
             });
@@ -166,11 +166,18 @@ jQuery3(document).ready(function () {
                 localStorage.setItem(id + '#table-length', len);
             });
             const storedLength = localStorage.getItem(id + '#table-length');
-            if (jQuery3.isNumeric(storedLength)) {
+            if ($.isNumeric(storedLength)) {
                 dataTable.page.len(storedLength).draw();
             }
         });
     }
 
-    bindTables();
+    (function ($) {
+        $.extend(true, $.fn.dataTable.defaults, {
+            mark: {
+                className: 'highlight'
+            }
+        });
+        bindTables($);
+    })(jQuery3);
 });
