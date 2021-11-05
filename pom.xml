@@ -18,14 +18,14 @@
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
-    <revision>1.11.3-2</revision>
+    <revision>1.11.3-3</revision>
     <changelist>-SNAPSHOT</changelist>
 
     <module.name>${project.groupId}.datatables</module.name>
 
-    <jquery3-api.version>3.5.1-3</jquery3-api.version>
+    <jquery3-api.version>3.6.0-2</jquery3-api.version>
     <font-awesome-api.version>5.15.4-1</font-awesome-api.version>
-    <bootstrap5-api.version>5.1.1-1</bootstrap5-api.version>
+    <bootstrap5-api.version>5.1.3-1</bootstrap5-api.version>
     <plugin-util-api.version>2.5.1</plugin-util-api.version>
   </properties>
 
