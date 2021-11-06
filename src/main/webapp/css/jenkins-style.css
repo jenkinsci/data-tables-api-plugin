@@ -2,10 +2,6 @@
 /* DataTables Material Design                                                                                          */
 /* ------------------------------------------------------------------------------------------------------------------- */
 
-table.dataTable {
-    border-collapse: collapse !important;
-}
-
 tfoot {
     font-weight: bold;
 }
