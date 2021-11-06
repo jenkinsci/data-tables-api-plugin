@@ -81,11 +81,12 @@ jQuery3(document).ready(function () {
          */
         function loadTableData(table, dataTable) {
             if (!table[0].hasAttribute('isLoaded')) {
-                table.attr('isLoaded', 'true');
+                table.attr('isLoaded', 'false');
                 tableDataProxy.getTableRows(table.attr('id'), function (t) {
                     (function () {
                         const model = JSON.parse(t.responseObject());
                         dataTable.rows.add(model).draw();
+                        table.attr('isLoaded', 'true');
                     })();
                 });
             }
