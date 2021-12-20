@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "datatables.net-bs5": "^1.11.3",
-    "datatables.net-buttons-bs5": "^2.0.1",
+    "datatables.net-buttons-bs5": "^2.1.1",
     "datatables.net-colreorder-bs5": "^1.5.5",
     "datatables.net-responsive-bs5": "^2.2.9",
     "datatables.mark.js": "^2.1.0",
