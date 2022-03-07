@@ -26,7 +26,7 @@ import static j2html.TagCreator.*;
  */
 public class TableColumn {
     @VisibleForTesting
-    static final String DETAILS_COLUMN_ICON_NAME = "plus-circle";
+    static final String DETAILS_COLUMN_ICON_NAME = "circle-plus";
 
     private final String headerLabel;
     private final String definition;

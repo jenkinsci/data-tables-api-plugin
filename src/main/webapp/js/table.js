@@ -113,12 +113,12 @@ jQuery3(document).ready(function () {
                 if (row.child.isShown()) {
                     row.child.hide();
                     tr.removeClass('shown');
-                    toggleDetailsColumnIcon(tr, "minus-circle", "plus-circle");
+                    toggleDetailsColumnIcon(tr, "circle-minus", "circle-plus");
                 }
                 else {
                     row.child($(this).data('description')).show();
                     tr.addClass('shown');
-                    toggleDetailsColumnIcon(tr, "plus-circle", "minus-circle");
+                    toggleDetailsColumnIcon(tr, "circle-plus", "circle-minus");
                 }
             });
 
