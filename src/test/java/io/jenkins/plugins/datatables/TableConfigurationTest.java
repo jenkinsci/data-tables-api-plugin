@@ -33,6 +33,17 @@ public class TableConfigurationTest {
     }
 
     @Test
+    void shouldCreateSelectConfiguration() {
+        TableConfiguration configuration = new TableConfiguration().select("single");
+
+        assertThat(configuration).hasConfiguration("{\"select\":\"single\"}");
+        assertThat(configuration).isNotUseButtons();
+        assertThat(configuration).isNotUseColReorder();
+        assertThat(configuration).isNotUseResponsive();
+        assertThat(configuration).isUseSelect();
+    }
+
+    @Test
     void shouldCreateColReorderConfiguration() {
         TableConfiguration configuration = new TableConfiguration()
                 .colReorder();

@@ -81,3 +81,14 @@ div.details-control {
 .form-select-sm, .form-control-sm {
     margin: 0.2em;
 }
+
+/* ------------------------------------------------------------------------------------------------------------------- */
+/* DataTables select                                                                                                  */
+/* ------------------------------------------------------------------------------------------------------------------- */
+table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
+    background-color: #b4b4b4 !important;
+}
+
+table.dataTable tbody tr.selected, table.dataTable tbody th.selected, table.dataTable tbody td.selected {
+    color: black !important;
+}

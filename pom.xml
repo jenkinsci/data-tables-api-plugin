@@ -157,6 +157,14 @@
                   <filtering>false</filtering>
                 </resource>
                 <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-select/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-select-bs5/js</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
                   <directory>${project.basedir}/node_modules/datatables.mark.js/dist</directory>
                   <filtering>false</filtering>
                   <excludes>
@@ -196,6 +204,10 @@
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-responsive-bs5/css</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
+                  <directory>${project.basedir}/node_modules/datatables.net-select-bs5/css</directory>
                   <filtering>false</filtering>
                 </resource>
               </resources>
