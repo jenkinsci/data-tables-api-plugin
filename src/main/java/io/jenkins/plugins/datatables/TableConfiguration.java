@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.jenkins.plugins.datatables.options.SelectStyle;
 
 /**
  * Provides a configuration for the whole DataTable. This is merged with a default configuration in table.js.
@@ -18,6 +19,7 @@ public class TableConfiguration {
     private boolean useResponsive = false;
     private boolean useColReorder = false;
     private boolean useButtons = false;
+    private boolean useSelect = false;
 
     /**
      * Make the table responsive, i.e. the columns wrap over to a child column.
@@ -99,6 +101,31 @@ public class TableConfiguration {
      */
     public boolean isUseButtons() {
         return useButtons;
+    }
+
+    /**
+     * Enable selection.
+     *
+     * @param selectStyle
+     *          The {@link SelectStyle selection style}
+     *
+     * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/reference/option/select">https://datatables.net/reference/option/select</a>
+     */
+    public TableConfiguration select(final SelectStyle selectStyle) {
+        configuration.put("select", selectStyle.getStyle());
+        useSelect = true;
+        return this;
+    }
+
+    /**
+     * Returns whether select is configured to be used.
+     *
+     * @return true, if select should be used, false otherwise
+     */
+    public boolean isUseSelect() {
+        return useSelect;
     }
 
     /**

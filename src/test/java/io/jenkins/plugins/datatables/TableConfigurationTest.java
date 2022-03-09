@@ -1,5 +1,6 @@
 package io.jenkins.plugins.datatables;
 
+import io.jenkins.plugins.datatables.options.SelectStyle;
 import org.junit.jupiter.api.Test;
 
 import static io.jenkins.plugins.datatables.TableConfigurationAssert.*;
@@ -30,6 +31,17 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseButtons();
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isUseResponsive();
+    }
+
+    @Test
+    void shouldCreateSelectConfiguration() {
+        TableConfiguration configuration = new TableConfiguration().select(SelectStyle.SINGLE);
+
+        assertThat(configuration).hasConfiguration("{\"select\":\"single\"}");
+        assertThat(configuration).isNotUseButtons();
+        assertThat(configuration).isNotUseColReorder();
+        assertThat(configuration).isNotUseResponsive();
+        assertThat(configuration).isUseSelect();
     }
 
     @Test
