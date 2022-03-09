@@ -6,6 +6,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.jenkins.plugins.datatables.options.SelectStyle;
 
 /**
  * Provides a configuration for the whole DataTable. This is merged with a default configuration in table.js.
@@ -105,15 +106,15 @@ public class TableConfiguration {
     /**
      * Enable selection.
      *
-     * @param selectionStyle
-     *          The <a href="https://datatables.net/reference/option/select.style">select.style</a> option
+     * @param selectStyle
+     *          The {@link SelectStyle selection style}
      *
      * @return this {@link TableConfiguration} for chaining methods
      *
      * @see <a href="https://datatables.net/reference/option/select">https://datatables.net/reference/option/select</a>
      */
-    public TableConfiguration select(final String selectionStyle) {
-        configuration.put("select", selectionStyle);
+    public TableConfiguration select(final SelectStyle selectStyle) {
+        configuration.put("select", selectStyle.getStyle());
         useSelect = true;
         return this;
     }
