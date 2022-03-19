@@ -27,6 +27,9 @@
   <j:if test="${model.tableConfiguration.useButtons}">
     <st:adjunct includes="io.jenkins.plugins.data-tables-buttons"/>
   </j:if>
+  <j:if test="${model.tableConfiguration.useSelect}">
+    <st:adjunct includes="io.jenkins.plugins.data-tables-select"/>
+  </j:if>
   <st:adjunct includes="io.jenkins.plugins.bind-tables"/>
 
   <div class="table-responsive">
