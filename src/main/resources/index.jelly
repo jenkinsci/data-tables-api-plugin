@@ -1,0 +1,6 @@
+<?jelly escape-by-default='true'?>
+
+<div>
+  Provides <a href="https://datatables.net">jQuery DataTables</a> for Jenkins Plugins. It is a highly flexible tool,
+  built upon the foundations of progressive enhancement, that adds several advanced features to any HTML table.
+</div>
