@@ -78,9 +78,9 @@ public abstract class TableModel {
          * Creates a new {@link DetailedColumnDefinition}.
          *
          * @param display
-         *         the entity property that should be used to display the column
+         *         the value that should be used to display the column
          * @param sort
-         *         the entity property that should be used to sort the column
+         *         the value that should be used to sort the column
          *
          * @see <a href="https://datatables.net/reference/option/columns.type">DataTables Column Types</a>
          */
