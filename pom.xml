@@ -21,6 +21,7 @@
     <revision>1.12.1-1</revision>
     <changelist>-SNAPSHOT</changelist>
 
+    <json-unit-assertj.version>2.35.0</json-unit-assertj.version>
     <module.name>${project.groupId}.datatables</module.name>
   </properties>
 
@@ -64,6 +65,18 @@
 
     <!-- Test Dependencies -->
 
+    <dependency>
+      <groupId>net.javacrumbs.json-unit</groupId>
+      <artifactId>json-unit-assertj</artifactId>
+      <version>${json-unit-assertj.version}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>plugin-util-api</artifactId>
@@ -213,6 +226,9 @@
           <packages combine.children="append">
             <package>io.jenkins.plugins.datatables</package>
           </packages>
+          <excludes>
+            <exclude>.*DetailedCell.*</exclude>
+          </excludes>
           <entryPointClassPackage>io.jenkins.plugins.datatables.assertions</entryPointClassPackage>
         </configuration>
       </plugin>
