@@ -19,6 +19,7 @@ public class TableConfiguration {
     private boolean useColReorder = false;
     private boolean useButtons = false;
     private boolean useSelect = false;
+    private boolean useStateSave = false;
 
     /**
      * Make the table responsive, i.e. the columns wrap over to a child column.
@@ -136,7 +137,17 @@ public class TableConfiguration {
      */
     public TableConfiguration stateSave() {
         configuration.put("stateSave", true);
+        useStateSave = true;
         return this;
+    }
+
+    /**
+     * Returns whether stateSave is configured to be used.
+     *
+     * @return true, if stateSave should be used, false otherwise
+     */
+    public boolean isUseStateSave() {
+        return useStateSave;
     }
 
     /**

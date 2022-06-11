@@ -12,6 +12,9 @@ jQuery3(document).ready(function () {
                 language: {
                     emptyTable: 'Loading - please wait ...'
                 },
+                responsive: {
+                    details: false
+                },
                 deferRender: true,
                 pagingType: 'numbers', // page number button only
                 order: [[1, 'asc']], // default order, if not persisted yet
@@ -21,7 +24,7 @@ jQuery3(document).ready(function () {
                         orderable: false
                     },
                     {
-                        targets: 'text-end', // All columns with the '.text-right' class in the <th>
+                        targets: 'text-end', // All columns with the '.text-end' class in the <th>
                         className: 'text-end'
                     },
                     {
@@ -31,7 +34,7 @@ jQuery3(document).ready(function () {
                                 if (data === 0) {
                                     return '-';
                                 }
-                                var dateTime = luxon.DateTime.fromMillis(data * 1000);
+                                const dateTime = luxon.DateTime.fromMillis(data * 1000);
                                 return '<span data-bs-toggle="tooltip" data-bs-placement="bottom" title="'
                                     + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">'
                                     + dateTime.toRelative({locale: 'en'}) + '</span>';
@@ -177,6 +180,9 @@ jQuery3(document).ready(function () {
         $.extend(true, $.fn.dataTable.defaults, {
             mark: {
                 className: 'highlight'
+            },
+            responsive: {
+                details: false
             }
         });
         bindTables($);

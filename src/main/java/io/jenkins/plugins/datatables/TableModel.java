@@ -67,8 +67,8 @@ public abstract class TableModel {
     }
 
     /**
-     * A column value attribute that provides a {@code display} and {@code sort} property so that a JQuery DataTables
-     * can use different properties to sort and display a column.
+     * A column value attribute that provides a {@code display} and {@code sort} property so that a JQuery data
+     * table can use different String properties to sort and display a column.
      *
      * @deprecated use the generic class {@link DetailedCell}
      */
@@ -102,10 +102,11 @@ public abstract class TableModel {
     }
 
     /**
-     * A table cell that provides a {@code display} and {@code sort} property so that a JQuery DataTables
-     * can use different properties to sort and display a column.
+     * A table cell that provides a {@code display} and {@code sort} property so that a JQuery data table can use
+     * different properties to sort and display a column.
      *
-     * @param <T> the type of the sort column
+     * @param <T>
+     *         the type of the sort column
      */
     public static class DetailedCell<T> {
         private final String display;

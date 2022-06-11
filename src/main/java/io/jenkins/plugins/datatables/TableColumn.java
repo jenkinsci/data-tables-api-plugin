@@ -4,7 +4,7 @@ import edu.hm.hafner.util.VisibleForTesting;
 
 import j2html.tags.UnescapedText;
 
-import io.jenkins.plugins.datatables.TableModel.DetailedColumnDefinition;
+import io.jenkins.plugins.datatables.TableModel.DetailedCell;
 import io.jenkins.plugins.fontawesome.api.SvgTag;
 import io.jenkins.plugins.util.JenkinsFacade;
 
@@ -28,11 +28,8 @@ public class TableColumn {
     @VisibleForTesting
     static final String DETAILS_COLUMN_ICON_NAME = "circle-plus";
 
-    private final String headerLabel;
-    private final String definition;
-
     /**
-     * Renders a expandable details column with the specified text.
+     * Renders an expandable details-column with the specified text.
      *
      * @param detailsText
      *         the text to show if the column has been expanded.
@@ -44,7 +41,7 @@ public class TableColumn {
     }
 
     /**
-     * Renders a expandable details column with the specified text.
+     * Renders an expandable details-column with the specified text.
      *
      * @param detailsText
      *         the text to show if the column has been expanded.
@@ -62,8 +59,12 @@ public class TableColumn {
                 .render();
     }
 
+    private final String headerLabel;
+    private final String definition;
+
     private ColumnCss headerClass = ColumnCss.NONE;
     private int width = 1;
+    private int priority;
 
     /**
      * Creates a simple column: it maps the specified property of the row entity to the column value.
@@ -83,7 +84,7 @@ public class TableColumn {
 
     /**
      * Creates a complex column: it maps the specified property of the row entity to the display and sort attributes of
-     * the column. The property {@code dataPropertyName} must be of type {@link DetailedColumnDefinition}.
+     * the column. The property {@code dataPropertyName} must be of type {@link DetailedCell}.
      *
      * @param headerLabel
      *         the label of the column header
@@ -106,6 +107,26 @@ public class TableColumn {
     }
 
     /**
+     * Sets the priority of this column. This priority will be evaluated when the table is created with the
+     * {@link TableConfiguration#responsive() responsive} option enabled. In this case the columns will automatically
+     * hide columns in a table so that the table fits horizontally into the space given to it.
+     *
+     * @param priority
+     *         the priority of this column
+     *
+     * @return this column
+     * @see <a href="https://datatables.net/extensions/responsive/priority">DataTables Responsive API Reference</a>
+     */
+    public TableColumn setPriority(final int priority) {
+        if (priority < 0) {
+            throw new IllegalArgumentException("Priority must be a positive value");
+        }
+        this.priority = priority;
+
+        return this;
+    }
+
+    /**
      * Sets the CSS class for the column {@code <th>} tag. Multiple classes need to be separated using a space.
      *
      * @param headerClass
@@ -120,14 +141,15 @@ public class TableColumn {
     }
 
     /**
-     * Sets the width of the column. Will be expanded to the class {@code col-width-[width]}, see {@code
-     * jenkins-style.css} for details about the actual percentages.
+     * Sets the width of the column. Will be expanded to the class {@code col-width-[width]}, see
+     * {@code jenkins-style.css} for details about the actual percentages.
      *
      * @param width
      *         the width CSS class to select for the column
      *
      * @return this column
      */
+    // FIXME: use datatables width!
     public TableColumn setWidth(final int width) {
         this.width = width;
 
@@ -146,7 +168,16 @@ public class TableColumn {
         return width;
     }
 
+    /**
+     * Returns the column definition: if the priority is set, then this {@code resposonsivePriority} will be added to
+     * the definition.
+     *
+     * @return the column definition
+     */
     public String getDefinition() {
+        if (priority > 0) {
+            return definition.replaceFirst("^\\{", String.format("{\"responsivePriority\":%d,", priority));
+        }
         return definition;
     }
 
@@ -162,8 +193,8 @@ public class TableColumn {
          */
         DATE("date"),
         /**
-         * Percentages (values in the interval [0,1]) will be rendered correctly as a percentage using the native
-         * JS locale sensitive rendering.
+         * Percentages (values in the interval [0,1]) will be rendered correctly as a percentage using the native JS
+         * locale sensitive rendering.
          */
         PERCENTAGE("percentage"),
         /**

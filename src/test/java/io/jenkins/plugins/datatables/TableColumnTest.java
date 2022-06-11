@@ -7,6 +7,7 @@ import io.jenkins.plugins.util.JenkinsFacade;
 
 import static io.jenkins.plugins.datatables.TableColumn.*;
 import static io.jenkins.plugins.datatables.assertions.Assertions.*;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -17,6 +18,10 @@ import static org.mockito.Mockito.*;
 class TableColumnTest {
     private static final String LABEL = "label";
     private static final int WIDTH = 2;
+    private static final String RESPONSIVE_PRIORITY = "responsivePriority";
+    private static final String DATA = "data";
+    private static final String DEFAULT_CONTENT = "defaultContent";
+    private static final String TYPE = "type";
 
     @Test
     void shouldCreateColumnWithSimpleDescription() {
@@ -26,6 +31,13 @@ class TableColumnTest {
         assertThat(column).hasDefinition("{  \"data\": \"one\",  \"defaultContent\": \"\"}");
         assertThat(column).hasHeaderClass(StringUtils.EMPTY);
         assertThat(column).hasWidth(1);
+
+        assertThatJson(column.getDefinition()).node(DATA).isEqualTo("one");
+        assertThatJson(column.getDefinition()).node(DEFAULT_CONTENT).asString().isEmpty();
+        assertThatJson(column.getDefinition()).node(RESPONSIVE_PRIORITY).isAbsent();
+
+        column.setPriority(1);
+        assertThatJson(column.getDefinition()).node(RESPONSIVE_PRIORITY).isEqualTo(1);
     }
 
     @Test
@@ -39,6 +51,14 @@ class TableColumnTest {
                 + "\"render\": {     \"_\": \"display\",     \"sort\": \"sort\"  }}");
         assertThat(column).hasHeaderClass(StringUtils.EMPTY);
         assertThat(column).hasWidth(1);
+
+        column.setPriority(1);
+        assertThatJson(column.getDefinition()).node(DATA).isEqualTo("one");
+        assertThatJson(column.getDefinition()).node(DEFAULT_CONTENT).asString().isEmpty();
+        assertThatJson(column.getDefinition()).node(RESPONSIVE_PRIORITY).isEqualTo(1);
+        assertThatJson(column.getDefinition()).node(TYPE).isEqualTo("integer");
+        assertThatJson(column.getDefinition()).node("render").node("_").isEqualTo("display");
+        assertThatJson(column.getDefinition()).node("render").node("sort").isEqualTo("sort");
     }
 
     @Test
