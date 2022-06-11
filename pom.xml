@@ -279,19 +279,7 @@
                 <exclude>
                   <item>
                     <matcher>java-package</matcher>
-                    <match>/org\.jvnet\.hudson(\..*)?/</match>
-                  </item>
-                  <item>
-                    <matcher>java-package</matcher>
-                    <match>/net\.sf\.json(\..*)?/</match>
-                  </item>
-                  <item>
-                    <matcher>java-package</matcher>
-                    <match>/hudson(\..*)?/</match>
-                  </item>
-                  <item>
-                    <matcher>java-package</matcher>
-                    <match>/org.kohsuke(\..*)?/</match>
+                    <match>/nothing(\..*)?/</match>
                   </item>
                 </exclude>
               </elements>
@@ -313,10 +301,6 @@
                   <code>java.annotation.*</code>
                   <annotationType>edu.umd.cs.findbugs.annotations.*</annotationType>
                   <justification>Annotation should be safe to change</justification>
-                </item>
-                <item>
-                  <regex>true</regex>
-                  <code>java.method.parameterTypeChanged</code>
                 </item>
               </differences>
             </revapi.differences>
