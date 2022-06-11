@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import io.jenkins.plugins.datatables.TableModel.DetailedCell;
+import io.jenkins.plugins.datatables.TableColumn.ColumnBuilder;
 
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 import static org.mockito.Mockito.*;
@@ -31,32 +31,23 @@ class TableModelTest {
     }
 
     @Test
-    void shouldCreateSimpleColumns() {
+    void shouldCreateColumns() {
         TableModel tableModel = spy(TableModel.class);
 
         List<TableColumn> columns = new ArrayList<>();
-        columns.add(new TableColumn("left", "leftProperty"));
+        columns.add(createColumn("left", "leftProperty"));
         when(tableModel.getColumns()).thenReturn(columns);
 
         assertThatJson(tableModel.getColumnsDefinition()).isArray().hasSize(1).containsExactly(
-                "{data:\"leftProperty\",defaultContent:\"\"}");
+                "{data:\"leftProperty\"}");
 
-        columns.add(new TableColumn("right", "rightProperty"));
+        columns.add(createColumn("right", "rightProperty"));
         assertThatJson(tableModel.getColumnsDefinition()).isArray().hasSize(2).containsExactly(
-                "{data:\"leftProperty\",defaultContent:\"\"}",
-                "{data:\"rightProperty\",defaultContent:\"\"}");
+                "{data:\"leftProperty\"}", "{data:\"rightProperty\"}");
     }
 
-    @Test
-    void shouldCreateDetailedCellColumns() {
-        TableModel tableModel = spy(TableModel.class);
-
-        List<TableColumn> columns = new ArrayList<>();
-        columns.add(new TableColumn("left", "leftProperty", "integer"));
-        when(tableModel.getColumns()).thenReturn(columns);
-
-        assertThatJson(tableModel.getColumnsDefinition()).isArray().hasSize(1).containsExactly(
-                "{data:\"leftProperty\",defaultContent:\"\", render:{_:\"display\",sort:\"sort\"},type:\"integer\"}]");
+    private TableColumn createColumn(final String label, final String property) {
+        return new ColumnBuilder().withHeaderLabel(label).withDataPropertyKey(property).build();
     }
 
     @Test
@@ -64,7 +55,7 @@ class TableModelTest {
         TableModel tableModel = spy(TableModel.class);
 
         List<TableColumn> columns = new ArrayList<>();
-        columns.add(new TableColumn("left", "leftProperty", "integer"));
+        columns.add(createColumn("left", "leftProperty"));
         when(tableModel.getColumns()).thenReturn(columns);
 
         assertThatJson(tableModel.getTableConfiguration()).satisfiesAnyOf(
