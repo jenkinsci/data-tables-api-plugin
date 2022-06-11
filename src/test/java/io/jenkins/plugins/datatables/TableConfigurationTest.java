@@ -1,7 +1,8 @@
 package io.jenkins.plugins.datatables;
 
-import io.jenkins.plugins.datatables.options.SelectStyle;
 import org.junit.jupiter.api.Test;
+
+import io.jenkins.plugins.datatables.TableConfiguration.SelectStyle;
 
 import static io.jenkins.plugins.datatables.TableConfigurationAssert.*;
 
