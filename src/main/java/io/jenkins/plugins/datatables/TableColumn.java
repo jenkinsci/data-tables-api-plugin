@@ -183,7 +183,7 @@ public class TableColumn {
      * Builder for {@link TableColumn} instances.
      */
     public static class ColumnBuilder {
-        private static final int DEFAULT_PRIORITY = 10000;
+        private static final int DEFAULT_PRIORITY = 10_000;
         @CheckForNull
         private String header;
         @CheckForNull
