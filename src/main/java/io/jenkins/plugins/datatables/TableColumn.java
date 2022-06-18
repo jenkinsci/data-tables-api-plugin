@@ -329,7 +329,8 @@ public class TableColumn {
                 return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(columnDefinition);
             }
             catch (JsonProcessingException exception) {
-                throw new IllegalArgumentException("Can't convert to JSON: " + columnDefinition);
+                throw new IllegalArgumentException("Can't convert to JSON: " + columnDefinition,
+                        exception);
             }
         }
     }
