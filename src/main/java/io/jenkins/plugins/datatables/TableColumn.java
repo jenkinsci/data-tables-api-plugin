@@ -1,10 +1,16 @@
 package io.jenkins.plugins.datatables;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import edu.hm.hafner.util.VisibleForTesting;
+import edu.umd.cs.findbugs.annotations.CheckForNull;
 
 import j2html.tags.UnescapedText;
 
-import io.jenkins.plugins.datatables.TableModel.DetailedColumnDefinition;
 import io.jenkins.plugins.fontawesome.api.SvgTag;
 import io.jenkins.plugins.util.JenkinsFacade;
 
@@ -18,7 +24,7 @@ import static j2html.TagCreator.*;
  *   <li>header label</li>
  *   <li>header CSS class</li>
  *   <li>column definition</li>
- *   <li>width</li>
+ *   <li>responsive priority</li>
  *   <li>tooltip</li>
  * </ul>
  *
@@ -28,11 +34,8 @@ public class TableColumn {
     @VisibleForTesting
     static final String DETAILS_COLUMN_ICON_NAME = "circle-plus";
 
-    private final String headerLabel;
-    private final String definition;
-
     /**
-     * Renders a expandable details column with the specified text.
+     * Renders an expandable details-column with the specified text.
      *
      * @param detailsText
      *         the text to show if the column has been expanded.
@@ -44,7 +47,7 @@ public class TableColumn {
     }
 
     /**
-     * Renders a expandable details column with the specified text.
+     * Renders an expandable details-column with the specified text.
      *
      * @param detailsText
      *         the text to show if the column has been expanded.
@@ -62,8 +65,17 @@ public class TableColumn {
                 .render();
     }
 
+    private final String headerLabel;
+    private final String definition;
+
     private ColumnCss headerClass = ColumnCss.NONE;
     private int width = 1;
+
+    private TableColumn(final String definition, final String headerLabel, final ColumnCss headerClass) {
+        this.headerLabel = headerLabel;
+        this.definition = definition;
+        this.headerClass = headerClass;
+    }
 
     /**
      * Creates a simple column: it maps the specified property of the row entity to the column value.
@@ -72,7 +84,10 @@ public class TableColumn {
      *         the label of the column header
      * @param dataPropertyName
      *         the property to extract from the entity, it will be shown as column value
+     *
+     * @deprecated Use {@link ColumnBuilder}
      */
+    @Deprecated
     public TableColumn(final String headerLabel, final String dataPropertyName) {
         this.headerLabel = headerLabel;
         definition = String.format("{"
@@ -83,7 +98,7 @@ public class TableColumn {
 
     /**
      * Creates a complex column: it maps the specified property of the row entity to the display and sort attributes of
-     * the column. The property {@code dataPropertyName} must be of type {@link DetailedColumnDefinition}.
+     * the column. The property {@code dataPropertyName} must be of type {@link DetailedCell}.
      *
      * @param headerLabel
      *         the label of the column header
@@ -91,7 +106,10 @@ public class TableColumn {
      *         the property to extract from the entity, it will be shown as column value
      * @param columnDataType
      *         JQuery DataTables data type of the column
+     *
+     * @deprecated Use {@link ColumnBuilder}
      */
+    @Deprecated
     public TableColumn(final String headerLabel, final String dataPropertyName, final String columnDataType) {
         this.headerLabel = headerLabel;
         definition = String.format("{"
@@ -112,7 +130,9 @@ public class TableColumn {
      *         the CSS class(es) for the {@code <th>} tag
      *
      * @return this column
+     * @deprecated Use {@link ColumnBuilder}
      */
+    @Deprecated
     public TableColumn setHeaderClass(final ColumnCss headerClass) {
         this.headerClass = headerClass;
 
@@ -120,14 +140,16 @@ public class TableColumn {
     }
 
     /**
-     * Sets the width of the column. Will be expanded to the class {@code col-width-[width]}, see {@code
-     * jenkins-style.css} for details about the actual percentages.
+     * Not supported anymore.
      *
      * @param width
-     *         the width CSS class to select for the column
+     *         the width
      *
      * @return this column
+     * @see ColumnBuilder#withResponsivePriority(int)
+     * @deprecated it makes more sense to let DataTables decide which columns to show
      */
+    @Deprecated
     public TableColumn setWidth(final int width) {
         this.width = width;
 
@@ -142,6 +164,13 @@ public class TableColumn {
         return headerClass.toString();
     }
 
+    /**
+     * Returns the width of the column.
+     *
+     * @return the width
+     * @deprecated it makes more sense to let DataTables decide which columns to show
+     */
+    @Deprecated
     public int getWidth() {
         return width;
     }
@@ -151,7 +180,199 @@ public class TableColumn {
     }
 
     /**
-     * Supported CSS classes that will enable special handling or rendering for table columns.
+     * Builder for {@link TableColumn} instances.
+     */
+    public static class ColumnBuilder {
+        private static final int DEFAULT_PRIORITY = 10_000;
+        @CheckForNull
+        private String header;
+        @CheckForNull
+        private String propertyKey;
+        private ColumnType type = ColumnType.STRING;
+        private int responsivePriority = DEFAULT_PRIORITY; // default priority of datatables
+        private ColumnCss headerCssClass = ColumnCss.NONE; // No specific class
+        private boolean isDetailedCellEnabled = false; // disabled by default
+
+        /**
+         * Sets the data type of the column.
+         *
+         * @param columnType
+         *         type of the column
+         *
+         * @return this
+         * @see <a href="https://datatables.net/reference/option/columns.type">DataTables columns types API
+         *         Reference</a>
+         */
+        public ColumnBuilder withType(final ColumnType columnType) {
+            this.type = columnType;
+            switch (columnType) {
+                case NUMBER:
+                case FORMATTED_NUMBER:
+                    withHeaderClass(ColumnCss.NUMBER);
+                    break;
+                default:
+                    // no special handling
+            }
+            return this;
+        }
+
+        /**
+         * Sets the key of the JSON property in the corresponding row entities that should be shown in this column.
+         *
+         * @param dataPropertyKey
+         *         name of the property in the corresponding row entity that should be shown in this column
+         *
+         * @return this
+         */
+        public ColumnBuilder withDataPropertyKey(final String dataPropertyKey) {
+            this.propertyKey = dataPropertyKey;
+
+            return this;
+        }
+
+        /**
+         * Sets the priority of this column. This priority will be evaluated when the table is created with the
+         * {@link TableConfiguration#responsive() responsive} option enabled. In this case the columns will
+         * automatically hide columns in a table so that the table fits horizontally into the space given to it. If not
+         * set, the DataTables default of {@link #DEFAULT_PRIORITY} will be used.
+         *
+         * @param priority
+         *         the priority of this column
+         *
+         * @return this column
+         * @see <a href="https://datatables.net/extensions/responsive/priority">DataTables Responsive API
+         *         Reference</a>
+         */
+        public ColumnBuilder withResponsivePriority(final int priority) {
+            if (priority < 0) {
+                throw new IllegalArgumentException("Responsive priority " + priority + " must be a positive value");
+            }
+
+            this.responsivePriority = priority;
+
+            return this;
+        }
+
+        /**
+         * Sets the label of the header for this column. This header will be used as text in the {@code <th>} tag of the
+         * corresponding table.
+         *
+         * @param headerLabel
+         *         label of the column
+         *
+         * @return this
+         */
+        public ColumnBuilder withHeaderLabel(final String headerLabel) {
+            this.header = headerLabel;
+
+            return this;
+        }
+
+        /**
+         * Sets the CSS class for the column {@code <th>} tag.
+         *
+         * @param headerClass
+         *         the CSS class(es) for the {@code <th>} tag
+         *
+         * @return this column
+         */
+        public ColumnBuilder withHeaderClass(final ColumnCss headerClass) {
+            this.headerCssClass = headerClass;
+
+            return this;
+        }
+
+        /**
+         * Enables the rendering of cells that use the {@link DetailedCell} format. Such cells can use different
+         * properties to sort and display the cell values.
+         *
+         * @return this column
+         */
+        public ColumnBuilder withDetailedCell() {
+            this.isDetailedCellEnabled = true;
+
+            return this;
+        }
+
+        /**
+         * Creates a new {@link TableColumn} based on the specified builder configuration.
+         *
+         * @return the created {@link TableColumn}
+         * @throws IllegalArgumentException
+         *         if the configuration is invalid
+         */
+        public TableColumn build() {
+            if (StringUtils.isBlank(header)) {
+                throw new IllegalArgumentException("Empty header label, see #withHeaderLabel");
+            }
+            return new TableColumn(createDefinition(), header, headerCssClass);
+        }
+
+        private String createDefinition() {
+            ObjectMapper mapper = new ObjectMapper();
+            ObjectNode columnDefinition = mapper.createObjectNode();
+            try {
+                if (propertyKey == null) {
+                    throw new IllegalArgumentException("No 'dataPropertyKey' defined, see #withDataPropertyKey");
+                }
+                columnDefinition.put("data", propertyKey);
+                columnDefinition.put("type", type.dataTablesType);
+                if (responsivePriority != DEFAULT_PRIORITY) { // optional property
+                    columnDefinition.put("responsivePriority", responsivePriority);
+                }
+                if (isDetailedCellEnabled) {
+                    ObjectNode detailedRenderer = mapper.createObjectNode();
+                    detailedRenderer.put("_", "display");
+                    detailedRenderer.put("sort", "sort");
+                    columnDefinition.set("render", detailedRenderer);
+                }
+                return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(columnDefinition);
+            }
+            catch (JsonProcessingException exception) {
+                throw new IllegalArgumentException("Can't convert to JSON: " + columnDefinition,
+                        exception);
+            }
+        }
+    }
+
+    /**
+     * Supported DataTables column types. When operating in client-side processing mode, DataTables can process the data
+     * used for the display in each cell in a manner suitable for the action being performed. For example, HTML tags
+     * will be removed from the strings used for filter matching, while sort formatting may remove currency symbols to
+     * allow currency values to be sorted numerically. The formatting action performed to normalise the data, so it can
+     * be ordered and searched depends upon the column's type.
+     */
+    public enum ColumnType {
+        /** Date or time values. */
+        DATE("date"),
+        /** Numbers will be shown right aligned, and use a simple number sorting. */
+        NUMBER("num"),
+        /**
+         * Formatted numbers will be shown right aligned, and use numeric sorting of formatted numbers. Numbers which
+         * are formatted with thousands separators, currency symbols or a percentage indicator will be sorted
+         * numerically automatically by DataTables.
+         */
+        FORMATTED_NUMBER("num-fmt"),
+        /**
+         * Fall back type if the data in the column does not match the requirements for the other data types (above).
+         */
+        STRING("string");
+
+        private final String dataTablesType;
+
+        ColumnType(final String dataTablesType) {
+            this.dataTablesType = dataTablesType;
+        }
+
+        @Override
+        public String toString() {
+            return dataTablesType;
+        }
+    }
+
+    /**
+     * Supported CSS classes that will enable special handling or rendering for table columns. Some of them will be
+     * mapped in the JS initialization (see "table.js").
      */
     public enum ColumnCss {
         /** No special rendering, the display property will be shown as such. */
@@ -162,8 +383,8 @@ public class TableColumn {
          */
         DATE("date"),
         /**
-         * Percentages (values in the interval [0,1]) will be rendered correctly as a percentage using the native
-         * JS locale sensitive rendering.
+         * Percentages (values in the interval [0,1]) will be rendered correctly as a percentage using the native JS
+         * locale sensitive rendering.
          */
         PERCENTAGE("percentage"),
         /**
