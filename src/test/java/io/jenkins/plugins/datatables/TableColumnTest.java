@@ -64,13 +64,13 @@ class TableColumnTest {
 
         TableColumn noPriority = builder.withHeaderLabel(LABEL)
                 .withDataPropertyKey(KEY)
-                .withType("integer")
+                .withType(ColumnType.STRING)
                 .withDetailedCell()
                 .build();
 
         assertThat(noPriority).hasHeaderLabel(LABEL).hasHeaderClass(StringUtils.EMPTY);
         assertThatJson(noPriority.getDefinition()).node(DATA).isEqualTo(KEY);
-        assertThatJson(noPriority.getDefinition()).node(TYPE).isEqualTo("integer");
+        assertThatJson(noPriority.getDefinition()).node(TYPE).isEqualTo("string");
         assertThatJson(noPriority.getDefinition()).node(RENDER).node("_").isEqualTo("display");
         assertThatJson(noPriority.getDefinition()).node(RENDER).node("sort").isEqualTo("sort");
         assertThatJson(noPriority.getDefinition()).node(RESPONSIVE_PRIORITY).isAbsent();
@@ -85,13 +85,25 @@ class TableColumnTest {
 
         TableColumn column = builder.withHeaderLabel(LABEL)
                 .withDataPropertyKey(KEY)
-                .withHeaderClass(ColumnCss.DATE)
-                .withType("integer")
                 .build();
 
-        assertThat(column).hasHeaderLabel(LABEL).hasHeaderClass("date");
+        assertThat(column).hasHeaderLabel(LABEL);
         assertThatJson(column.getDefinition()).node(DATA).isEqualTo(KEY);
-        assertThatJson(column.getDefinition()).node(TYPE).isEqualTo("integer");
+    }
+
+    @Test
+    void shouldVerifyCssStyle() {
+        ColumnBuilder builder = new ColumnBuilder().withHeaderLabel(LABEL).withDataPropertyKey(KEY);
+
+        assertThat(builder.withHeaderClass(ColumnCss.NO_SORT)
+                .build()).hasHeaderClass("nosort");
+
+        assertThat(builder.withType(ColumnType.NUMBER)
+                .build()).hasHeaderClass("text-end");
+        assertThat(builder.withHeaderClass(ColumnCss.PERCENTAGE)
+                .build()).hasHeaderClass("percentage");
+        assertThat(builder.withType(ColumnType.FORMATTED_NUMBER)
+                .build()).hasHeaderClass("text-end");
     }
 
     @Test

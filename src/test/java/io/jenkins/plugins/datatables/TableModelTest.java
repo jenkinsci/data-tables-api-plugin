@@ -39,11 +39,11 @@ class TableModelTest {
         when(tableModel.getColumns()).thenReturn(columns);
 
         assertThatJson(tableModel.getColumnsDefinition()).isArray().hasSize(1).containsExactly(
-                "{data:\"leftProperty\"}");
+                "{data:\"leftProperty\",\"type\":\"string\"}");
 
         columns.add(createColumn("right", "rightProperty"));
         assertThatJson(tableModel.getColumnsDefinition()).isArray().hasSize(2).containsExactly(
-                "{data:\"leftProperty\"}", "{data:\"rightProperty\"}");
+                "{data:\"leftProperty\",\"type\":\"string\"}", "{data:\"rightProperty\",\"type\":\"string\"}");
     }
 
     private TableColumn createColumn(final String label, final String property) {

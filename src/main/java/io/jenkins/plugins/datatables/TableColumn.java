@@ -84,6 +84,7 @@ public class TableColumn {
      *         the label of the column header
      * @param dataPropertyName
      *         the property to extract from the entity, it will be shown as column value
+     *
      * @deprecated Use {@link ColumnBuilder}
      */
     @Deprecated
@@ -105,6 +106,7 @@ public class TableColumn {
      *         the property to extract from the entity, it will be shown as column value
      * @param columnDataType
      *         JQuery DataTables data type of the column
+     *
      * @deprecated Use {@link ColumnBuilder}
      */
     @Deprecated
@@ -186,8 +188,7 @@ public class TableColumn {
         private String header;
         @CheckForNull
         private String propertyKey;
-        @CheckForNull
-        private String type;
+        private ColumnType type = ColumnType.STRING;
         private int responsivePriority = DEFAULT_PRIORITY; // default priority of datatables
         private ColumnCss headerCssClass = ColumnCss.NONE; // No specific class
         private boolean isDetailedCellEnabled = false; // disabled by default
@@ -195,17 +196,23 @@ public class TableColumn {
         /**
          * Sets the data type of the column.
          *
-         * @param dataType
+         * @param columnType
          *         type of the column
          *
          * @return this
          * @see <a href="https://datatables.net/reference/option/columns.type">DataTables columns types API
          *         Reference</a>
          */
-        // FIXME: enum?
-        public ColumnBuilder withType(final String dataType) {
-            this.type = dataType;
-
+        public ColumnBuilder withType(final ColumnType columnType) {
+            this.type = columnType;
+            switch (columnType) {
+                case NUMBER:
+                case FORMATTED_NUMBER:
+                    withHeaderClass(ColumnCss.NUMBER);
+                    break;
+                default:
+                    // no special handling
+            }
             return this;
         }
 
@@ -290,8 +297,9 @@ public class TableColumn {
         /**
          * Creates a new {@link TableColumn} based on the specified builder configuration.
          *
-          * @return the created {@link TableColumn}
-         * @throws IllegalArgumentException if the configuration is invalid
+         * @return the created {@link TableColumn}
+         * @throws IllegalArgumentException
+         *         if the configuration is invalid
          */
         public TableColumn build() {
             if (StringUtils.isBlank(header)) {
@@ -308,9 +316,7 @@ public class TableColumn {
                     throw new IllegalArgumentException("No 'dataPropertyKey' defined, see #withDataPropertyKey");
                 }
                 columnDefinition.put("data", propertyKey);
-                if (type != null) { // optional property
-                    columnDefinition.put("type", type);
-                }
+                columnDefinition.put("type", type.dataTablesType);
                 if (responsivePriority != DEFAULT_PRIORITY) { // optional property
                     columnDefinition.put("responsivePriority", responsivePriority);
                 }
@@ -329,7 +335,43 @@ public class TableColumn {
     }
 
     /**
-     * Supported CSS classes that will enable special handling or rendering for table columns.
+     * Supported DataTables column types. When operating in client-side processing mode, DataTables can process the data
+     * used for the display in each cell in a manner suitable for the action being performed. For example, HTML tags
+     * will be removed from the strings used for filter matching, while sort formatting may remove currency symbols to
+     * allow currency values to be sorted numerically. The formatting action performed to normalise the data, so it can
+     * be ordered and searched depends upon the column's type.
+     */
+    public enum ColumnType {
+        /** Date or time values. */
+        DATE("date"),
+        /** Numbers will be shown right aligned, and use a simple number sorting. */
+        NUMBER("num"),
+        /**
+         * Formatted numbers will be shown right aligned, and use numeric sorting of formatted numbers. Numbers which
+         * are formatted with thousands separators, currency symbols or a percentage indicator will be sorted
+         * numerically automatically by DataTables.
+         */
+        FORMATTED_NUMBER("num-fmt"),
+        /**
+         * Fall back type if the data in the column does not match the requirements for the other data types (above).
+         */
+        STRING("string");
+
+        private final String dataTablesType;
+
+        ColumnType(final String dataTablesType) {
+            this.dataTablesType = dataTablesType;
+        }
+
+        @Override
+        public String toString() {
+            return dataTablesType;
+        }
+    }
+
+    /**
+     * Supported CSS classes that will enable special handling or rendering for table columns. Some of them will be
+     * mapped in the JS initialization (see "table.js").
      */
     public enum ColumnCss {
         /** No special rendering, the display property will be shown as such. */

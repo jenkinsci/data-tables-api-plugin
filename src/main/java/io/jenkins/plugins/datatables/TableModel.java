@@ -100,5 +100,4 @@ public abstract class TableModel {
             return sort;
         }
     }
-
 }
