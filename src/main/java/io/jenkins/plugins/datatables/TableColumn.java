@@ -207,7 +207,9 @@ public class TableColumn {
             this.type = columnType;
             switch (columnType) {
                 case NUMBER:
+                case HTML_NUMBER:
                 case FORMATTED_NUMBER:
+                case FORMATTED_HTML_NUMBER:
                     withHeaderClass(ColumnCss.NUMBER);
                     break;
                 default:
@@ -348,11 +350,21 @@ public class TableColumn {
         /** Numbers will be shown right aligned, and use a simple number sorting. */
         NUMBER("num"),
         /**
+         * Numbers will be shown right aligned, and use a simple number sorting. May contain HTML tags also in the data.
+         */
+        HTML_NUMBER("html-num"),
+        /**
          * Formatted numbers will be shown right aligned, and use numeric sorting of formatted numbers. Numbers which
          * are formatted with thousands separators, currency symbols or a percentage indicator will be sorted
          * numerically automatically by DataTables.
          */
         FORMATTED_NUMBER("num-fmt"),
+        /**
+         * Formatted numbers will be shown right aligned, and use numeric sorting of formatted numbers. Numbers which
+         * are formatted with thousands separators, currency symbols or a percentage indicator will be sorted
+         * numerically automatically by DataTables. May contain HTML tags also in the data.
+         */
+        FORMATTED_HTML_NUMBER("html-num-fmt"),
         /**
          * Fall back type if the data in the column does not match the requirements for the other data types (above).
          */
