@@ -7,50 +7,103 @@ import io.jenkins.plugins.util.JenkinsFacade;
 
 import static io.jenkins.plugins.datatables.TableColumn.*;
 import static io.jenkins.plugins.datatables.assertions.Assertions.*;
+import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Tests the class {@link TableColumn}.
+ * Tests the classes {@link TableColumn} and {@link ColumnBuilder}.
  *
  * @author Ullrich Hafner
  */
 class TableColumnTest {
     private static final String LABEL = "label";
-    private static final int WIDTH = 2;
+    private static final String RESPONSIVE_PRIORITY = "responsivePriority";
+    private static final String DATA = "data";
+    private static final String TYPE = "type";
+    private static final String RENDER = "render";
+    private static final String KEY = "one";
+
+    @Test
+    void shouldEnsureValidBuilderState() {
+        ColumnBuilder builder = new ColumnBuilder();
+
+        assertThatIllegalArgumentException().isThrownBy(() -> builder.withResponsivePriority(-1));
+
+        assertThatIllegalArgumentException().isThrownBy(builder::build).withMessageContainingAll("withHeaderLabel");
+        builder.withHeaderLabel(LABEL);
+
+        assertThatIllegalArgumentException().isThrownBy(builder::build).withMessageContainingAll("withDataPropertyKey");
+        builder.withDataPropertyKey(KEY);
+
+        assertThat(builder.build()).hasHeaderLabel(LABEL).hasHeaderClass(StringUtils.EMPTY);
+    }
 
     @Test
     void shouldCreateColumnWithSimpleDescription() {
-        TableColumn column = new TableColumn(LABEL, "one");
+        ColumnBuilder builder = new ColumnBuilder();
 
-        assertThat(column).hasHeaderLabel(LABEL);
-        assertThat(column).hasDefinition("{  \"data\": \"one\",  \"defaultContent\": \"\"}");
-        assertThat(column).hasHeaderClass(StringUtils.EMPTY);
-        assertThat(column).hasWidth(1);
+        TableColumn noPriority = builder.withHeaderLabel(LABEL)
+                .withDataPropertyKey(KEY)
+                .build();
+
+        assertThat(noPriority).hasHeaderLabel(LABEL).hasHeaderClass(StringUtils.EMPTY);
+        assertThatJson(noPriority.getDefinition()).node(DATA).isEqualTo(KEY);
+        assertThatJson(noPriority.getDefinition()).node(RESPONSIVE_PRIORITY).isAbsent();
+
+        TableColumn withPriority = builder.withHeaderLabel(LABEL)
+                .withDataPropertyKey(KEY)
+                .withResponsivePriority(1)
+                .build();
+
+        assertThatJson(withPriority.getDefinition()).node(RESPONSIVE_PRIORITY).isEqualTo(1);
     }
 
     @Test
     void shouldCreateColumnWithComplexDescription() {
-        TableColumn column = new TableColumn(LABEL, "one", "integer");
+        ColumnBuilder builder = new ColumnBuilder();
 
-        assertThat(column).hasHeaderLabel(LABEL);
-        assertThat(column).hasDefinition("{  \"type\": \"integer\",  "
-                + "\"data\": \"one\",  "
-                + "\"defaultContent\": \"\",  "
-                + "\"render\": {     \"_\": \"display\",     \"sort\": \"sort\"  }}");
-        assertThat(column).hasHeaderClass(StringUtils.EMPTY);
-        assertThat(column).hasWidth(1);
+        TableColumn noPriority = builder.withHeaderLabel(LABEL)
+                .withDataPropertyKey(KEY)
+                .withType(ColumnType.STRING)
+                .withDetailedCell()
+                .build();
+
+        assertThat(noPriority).hasHeaderLabel(LABEL).hasHeaderClass(StringUtils.EMPTY);
+        assertThatJson(noPriority.getDefinition()).node(DATA).isEqualTo(KEY);
+        assertThatJson(noPriority.getDefinition()).node(TYPE).isEqualTo("string");
+        assertThatJson(noPriority.getDefinition()).node(RENDER).node("_").isEqualTo("display");
+        assertThatJson(noPriority.getDefinition()).node(RENDER).node("sort").isEqualTo("sort");
+        assertThatJson(noPriority.getDefinition()).node(RESPONSIVE_PRIORITY).isAbsent();
+
+        TableColumn withPriority = builder.withResponsivePriority(1).build();
+        assertThatJson(withPriority.getDefinition()).node(RESPONSIVE_PRIORITY).isEqualTo(1);
     }
 
     @Test
     void shouldCreateColumnWithOtherProperties() {
-        TableColumn column = new TableColumn(LABEL, "simple")
-                .setHeaderClass(ColumnCss.DATE)
-                .setWidth(WIDTH);
+        ColumnBuilder builder = new ColumnBuilder();
+
+        TableColumn column = builder.withHeaderLabel(LABEL)
+                .withDataPropertyKey(KEY)
+                .build();
 
         assertThat(column).hasHeaderLabel(LABEL);
-        assertThat(column).hasDefinition("{  \"data\": \"simple\",  \"defaultContent\": \"\"}");
-        assertThat(column).hasHeaderClass("date");
-        assertThat(column).hasWidth(WIDTH);
+        assertThatJson(column.getDefinition()).node(DATA).isEqualTo(KEY);
+    }
+
+    @Test
+    void shouldVerifyCssStyle() {
+        ColumnBuilder builder = new ColumnBuilder().withHeaderLabel(LABEL).withDataPropertyKey(KEY);
+
+        assertThat(builder.withHeaderClass(ColumnCss.NO_SORT)
+                .build()).hasHeaderClass("nosort");
+
+        assertThat(builder.withType(ColumnType.NUMBER)
+                .build()).hasHeaderClass("text-end");
+        assertThat(builder.withHeaderClass(ColumnCss.PERCENTAGE)
+                .build()).hasHeaderClass("percentage");
+        assertThat(builder.withType(ColumnType.FORMATTED_NUMBER)
+                .build()).hasHeaderClass("text-end");
     }
 
     @Test
@@ -63,20 +116,5 @@ class TableColumnTest {
                         + "<svg class=\"details-icon svg-icon\"><use href></use>"
                         + "</svg>"
                         + "</div>");
-    }
-
-    @Test
-    void shouldCreateHiddenColumn() {
-        TableColumn column = new TableColumn(LABEL, "Hidden", "String")
-                .setHeaderClass(ColumnCss.HIDDEN)
-                .setWidth(0);
-
-        assertThat(column).hasHeaderLabel(LABEL);
-        assertThat(column).hasDefinition("{  \"type\": \"String\",  "
-                + "\"data\": \"Hidden\",  "
-                + "\"defaultContent\": \"\",  "
-                + "\"render\": {     \"_\": \"display\",     \"sort\": \"sort\"  }}");
-        assertThat(column).hasHeaderClass("hidden");
-        assertThat(column).hasWidth(0);
     }
 }
