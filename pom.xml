@@ -245,27 +245,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.revapi</groupId>
-        <artifactId>revapi-maven-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-          <analysisConfiguration>
-            <revapi.differences>
-              <justification>Not relevant changes that are safe to ignore</justification>
-              <criticality>allowed</criticality>
-              <differences combine.children="append">
-                <item>
-                  <regex>true</regex>
-                  <code>java.annotation.*</code>
-                  <annotationType>edu.umd.cs.findbugs.annotations.*</annotationType>
-                  <justification>Annotation should be safe to change</justification>
-                </item>
-              </differences>
-            </revapi.differences>
-          </analysisConfiguration>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
