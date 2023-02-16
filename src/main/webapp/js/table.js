@@ -90,6 +90,7 @@ jQuery3(document).ready(function () {
                         const model = JSON.parse(t.responseObject());
                         dataTable.rows.add(model).draw();
                         table.attr('isLoaded', 'true');
+                        dataTable.columns.adjust().draw();
                     })();
                 });
             }
