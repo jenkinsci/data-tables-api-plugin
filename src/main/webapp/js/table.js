@@ -177,7 +177,7 @@ jQuery3(document).ready(function () {
             }
 
             // Store search text
-            if (table.attr('remember-search-text') === 'true') {
+            if (table.attr('data-remember-search-text') === 'true') {
                 table.on( 'search.dt', function () {
                     localStorage.setItem(id + '#table-search-text', dataTable.search());
                 });
