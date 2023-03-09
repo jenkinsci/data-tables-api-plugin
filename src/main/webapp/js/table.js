@@ -92,6 +92,9 @@ jQuery3(document).ready(function () {
                         dataTable.columns.adjust().draw();
 
                         table.attr('isLoaded', 'true');
+                        table.find('.details-icon-close').each(function () {
+                            $(this).hide();
+                        });
                     })();
                 });
             }
@@ -115,15 +118,19 @@ jQuery3(document).ready(function () {
                 const tr = $(this).parents('tr');
                 const row = dataTable.row(tr);
 
+                const openRowButton = tr.find('.details-icon-open');
+                const closeRowButton = tr.find('.details-icon-close');
                 if (row.child.isShown()) {
                     row.child.hide();
                     tr.removeClass('shown');
-                    toggleDetailsColumnIcon(tr, "circle-minus", "circle-plus");
+                    openRowButton.show();
+                    closeRowButton.hide();
                 }
                 else {
                     row.child($(this).data('description')).show();
                     tr.addClass('shown');
-                    toggleDetailsColumnIcon(tr, "circle-plus", "circle-minus");
+                    openRowButton.hide();
+                    closeRowButton.show();
                 }
             });
 
