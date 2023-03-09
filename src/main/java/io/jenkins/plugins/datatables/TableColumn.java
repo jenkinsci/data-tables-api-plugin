@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
+import io.jenkins.plugins.util.JenkinsFacade;
+
 import static j2html.TagCreator.*;
 
 /**
@@ -41,6 +43,22 @@ public class TableColumn {
                 .attr("data-description", detailsText)
                 .with(join(symbol("add", "open"),
                         symbol("remove", "close"))).render();
+    }
+
+    /**
+     * Renders an expandable details-column with the specified text.
+     *
+     * @param detailsText
+     *         the text to show if the column has been expanded.
+     * @param jenkinsFacade
+     *         facade for Jenkins API calls
+     *
+     * @return the HTML div to create the details column
+     * @deprecated use {@link #renderDetailsColumn(String)}
+     */
+    @Deprecated
+    public static String renderDetailsColumn(final String detailsText, @SuppressWarnings("unused") final JenkinsFacade jenkinsFacade) {
+        return renderDetailsColumn(detailsText);
     }
 
     private static String symbol(final String imageName, final String cssId) {
