@@ -92,6 +92,7 @@ jQuery3(document).ready(function () {
                         dataTable.columns.adjust().draw();
 
                         table.attr('isLoaded', 'true');
+                        table.emptyTable = 'No records found';
                         table.find('.details-icon-close').each(function () {
                             $(this).hide();
                         });
