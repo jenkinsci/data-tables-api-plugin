@@ -3,12 +3,9 @@ package io.jenkins.plugins.datatables;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
-import io.jenkins.plugins.util.JenkinsFacade;
-
 import static io.jenkins.plugins.datatables.TableColumn.*;
 import static io.jenkins.plugins.datatables.assertions.Assertions.*;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
-import static org.mockito.Mockito.*;
 
 /**
  * Tests the classes {@link TableColumn} and {@link ColumnBuilder}.
@@ -104,17 +101,5 @@ class TableColumnTest {
                 .build()).hasHeaderClass("percentage");
         assertThat(builder.withType(ColumnType.FORMATTED_NUMBER)
                 .build()).hasHeaderClass("text-end");
-    }
-
-    @Test
-    void shouldCreateDetailsColumnDiv() {
-        JenkinsFacade jenkinsFacade = mock(JenkinsFacade.class);
-        when(jenkinsFacade.getImagePath(DETAILS_COLUMN_ICON_NAME)).thenReturn("/path/to/icon");
-
-        assertThat(renderDetailsColumn("details text", jenkinsFacade))
-                .isEqualTo("<div class=\"details-control\" data-description=\"details text\">"
-                        + "<svg class=\"details-icon svg-icon\"><use href></use>"
-                        + "</svg>"
-                        + "</div>");
     }
 }

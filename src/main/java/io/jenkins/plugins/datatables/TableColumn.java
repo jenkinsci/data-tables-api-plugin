@@ -1,17 +1,15 @@
 package io.jenkins.plugins.datatables;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jenkins.ui.symbol.Symbol;
+import org.jenkins.ui.symbol.SymbolRequest.Builder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import edu.hm.hafner.util.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 
-import j2html.tags.UnescapedText;
-
-import io.jenkins.plugins.fontawesome.api.SvgTag;
 import io.jenkins.plugins.util.JenkinsFacade;
 
 import static j2html.TagCreator.*;
@@ -31,9 +29,6 @@ import static j2html.TagCreator.*;
  * @author Ullrich Hafner
  */
 public class TableColumn {
-    @VisibleForTesting
-    static final String DETAILS_COLUMN_ICON_NAME = "circle-plus";
-
     /**
      * Renders an expandable details-column with the specified text.
      *
@@ -43,7 +38,11 @@ public class TableColumn {
      * @return the HTML div to create the details column
      */
     public static String renderDetailsColumn(final String detailsText) {
-        return renderDetailsColumn(detailsText, new JenkinsFacade());
+        return div()
+                .withClass("details-control")
+                .attr("data-description", detailsText)
+                .with(join(symbol("add", "open"),
+                        symbol("remove", "close"))).render();
     }
 
     /**
@@ -55,14 +54,19 @@ public class TableColumn {
      *         facade for Jenkins API calls
      *
      * @return the HTML div to create the details column
+     * @deprecated use {@link #renderDetailsColumn(String)}
      */
-    public static String renderDetailsColumn(final String detailsText, final JenkinsFacade jenkinsFacade) {
-        return div()
-                .withClass("details-control")
-                .attr("data-description", detailsText)
-                .with(new UnescapedText(
-                        new SvgTag(DETAILS_COLUMN_ICON_NAME, jenkinsFacade).withClasses("details-icon").render()))
-                .render();
+    @Deprecated
+    public static String renderDetailsColumn(final String detailsText, @SuppressWarnings("unused") final JenkinsFacade jenkinsFacade) {
+        return renderDetailsColumn(detailsText);
+    }
+
+    private static String symbol(final String imageName, final String cssId) {
+        return Symbol.get(new Builder()
+                .withName(imageName + "-circle-outline")
+                .withPluginName("ionicons-api")
+                .withClasses("details-icon details-icon-" + cssId)
+                .build());
     }
 
     private final String headerLabel;
