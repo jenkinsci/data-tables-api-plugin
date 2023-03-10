@@ -139,6 +139,10 @@
               <outputDirectory>${project.build.directory}/${project.artifactId}/js</outputDirectory>
               <resources>
                 <resource>
+                  <directory>${project.basedir}/node_modules/luxon/build/global</directory>
+                  <filtering>false</filtering>
+                </resource>
+                <resource>
                   <directory>${project.basedir}/node_modules/datatables.net/js</directory>
                   <filtering>false</filtering>
                 </resource>
@@ -238,6 +242,7 @@
           </packages>
           <excludes>
             <exclude>.*DetailedCell.*</exclude>
+            <exclude>.*TableModelDetailedColumnDefinition.*</exclude>
           </excludes>
           <entryPointClassPackage>io.jenkins.plugins.datatables.assertions</entryPointClassPackage>
         </configuration>
