@@ -145,47 +145,49 @@ jQuery3(document).ready(function () {
                 });
             }
 
-            // Add event listener that stores the order a user selects
-            table.on('order.dt', function () {
-                const order = table.DataTable().order();
-                localStorage.setItem(id + '#orderBy', order[0][0]);
-                localStorage.setItem(id + '#orderDirection', order[0][1]);
-            });
-
-            /**
-             * Restores the order of every table by reading the local storage of the browser.
-             * If no order has been stored yet, the table is skipped.
-             * Also saves the default length of the number of table columns.
-             */
-            const orderBy = localStorage.getItem(id + '#orderBy');
-            const orderDirection = localStorage.getItem(id + '#orderDirection');
-            if (orderBy && orderDirection) {
-                const order = [orderBy, orderDirection];
-                try {
-                    dataTable.order(order).draw();
-                }
-                catch (ignore) { // TODO: find a way to determine the number of columns here
-                    dataTable.order([[1, 'asc']]).draw();
-                }
-            }
-
-            // Store paging size
-            table.on('length.dt', function (e, settings, len) {
-                localStorage.setItem(id + '#table-length', len);
-            });
-            const storedLength = localStorage.getItem(id + '#table-length');
-            if ($.isNumeric(storedLength)) {
-                dataTable.page.len(storedLength).draw();
-            }
-
-            // Store search text
-            if (table.attr('data-remember-search-text') === 'true') {
-                table.on( 'search.dt', function () {
-                    localStorage.setItem(id + '#table-search-text', dataTable.search());
+            if (!table.hasClass("custom-persistence-off")) {
+                // Add event listener that stores the order a user selects
+                table.on('order.dt', function () {
+                    const order = table.DataTable().order();
+                    localStorage.setItem(id + '#orderBy', order[0][0]);
+                    localStorage.setItem(id + '#orderDirection', order[0][1]);
                 });
-                const storedSearchText = localStorage.getItem(id + '#table-search-text');
-                if (storedSearchText) {
-                    dataTable.search(storedSearchText).draw();
+
+                /**
+                 * Restores the order of every table by reading the local storage of the browser.
+                 * If no order has been stored yet, the table is skipped.
+                 * Also saves the default length of the number of table columns.
+                 */
+                const orderBy = localStorage.getItem(id + '#orderBy');
+                const orderDirection = localStorage.getItem(id + '#orderDirection');
+                if (orderBy && orderDirection) {
+                    const order = [orderBy, orderDirection];
+                    try {
+                        dataTable.order(order).draw();
+                    }
+                    catch (ignore) { // TODO: find a way to determine the number of columns here
+                        dataTable.order([[1, 'asc']]).draw();
+                    }
+                }
+
+                // Store paging size
+                table.on('length.dt', function (e, settings, len) {
+                    localStorage.setItem(id + '#table-length', len);
+                });
+                const storedLength = localStorage.getItem(id + '#table-length');
+                if ($.isNumeric(storedLength)) {
+                    dataTable.page.len(storedLength).draw();
+                }
+
+                // Store search text
+                if (table.attr('data-remember-search-text') === 'true') {
+                    table.on('search.dt', function () {
+                        localStorage.setItem(id + '#table-search-text', dataTable.search());
+                    });
+                    const storedSearchText = localStorage.getItem(id + '#table-search-text');
+                    if (storedSearchText) {
+                        dataTable.search(storedSearchText).draw();
+                    }
                 }
             }
         });
