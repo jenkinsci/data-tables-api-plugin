@@ -177,6 +177,17 @@ jQuery3(document).ready(function () {
             if ($.isNumeric(storedLength)) {
                 dataTable.page.len(storedLength).draw();
             }
+
+            // Store search text
+            if (table.attr('data-remember-search-text') === 'true') {
+                table.on( 'search.dt', function () {
+                    localStorage.setItem(id + '#table-search-text', dataTable.search());
+                });
+                const storedSearchText = localStorage.getItem(id + '#table-search-text');
+                if (storedSearchText) {
+                    dataTable.search(storedSearchText).draw();
+                }
+            }
         });
     }
 
