@@ -38,11 +38,7 @@ public class TableColumn {
      * @return the HTML div to create the details column
      */
     public static String renderDetailsColumn(final String detailsText) {
-        return div()
-                .withClass("details-control")
-                .attr("data-description", detailsText)
-                .with(join(symbol("add", "open"),
-                        symbol("remove", "close"))).render();
+        return renderDetailsColumn(detailsText, new JenkinsFacade());
     }
 
     /**
@@ -51,17 +47,20 @@ public class TableColumn {
      * @param detailsText
      *         the text to show if the column has been expanded.
      * @param jenkinsFacade
-     *         facade for Jenkins API calls
+     *         facade for Jenkins API calls to get symbols
      *
      * @return the HTML div to create the details column
-     * @deprecated use {@link #renderDetailsColumn(String)}
      */
-    @Deprecated
-    public static String renderDetailsColumn(final String detailsText, @SuppressWarnings("unused") final JenkinsFacade jenkinsFacade) {
-        return renderDetailsColumn(detailsText);
+    public static String renderDetailsColumn(final String detailsText,
+            @SuppressWarnings("unused") final JenkinsFacade jenkinsFacade) {
+        return div()
+                .withClass("details-control")
+                .attr("data-description", detailsText)
+                .with(join(symbol("add", "open", jenkinsFacade),
+                        symbol("remove", "close", jenkinsFacade))).render();
     }
 
-    private static String symbol(final String imageName, final String cssId) {
+    private static String symbol(final String imageName, final String cssId, final JenkinsFacade jenkins) {
         return Symbol.get(new Builder()
                 .withName(imageName + "-circle-outline")
                 .withPluginName("ionicons-api")
@@ -354,7 +353,8 @@ public class TableColumn {
         /** Numbers will be shown right aligned, and use a simple number sorting. */
         NUMBER("num"),
         /**
-         * Numbers will be shown right aligned, and use a simple number sorting. May contain HTML tags also in the data.
+         * Numbers will be shown right aligned, and use a simple number sorting. May contain HTML tags also in the
+         * data.
          */
         HTML_NUMBER("html-num"),
         /**
