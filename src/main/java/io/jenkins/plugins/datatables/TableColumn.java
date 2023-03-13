@@ -1,7 +1,6 @@
 package io.jenkins.plugins.datatables;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jenkins.ui.symbol.Symbol;
 import org.jenkins.ui.symbol.SymbolRequest.Builder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -51,8 +50,7 @@ public class TableColumn {
      *
      * @return the HTML div to create the details column
      */
-    public static String renderDetailsColumn(final String detailsText,
-            @SuppressWarnings("unused") final JenkinsFacade jenkinsFacade) {
+    public static String renderDetailsColumn(final String detailsText, final JenkinsFacade jenkinsFacade) {
         return div()
                 .withClass("details-control")
                 .attr("data-description", detailsText)
@@ -61,7 +59,7 @@ public class TableColumn {
     }
 
     private static String symbol(final String imageName, final String cssId, final JenkinsFacade jenkins) {
-        return Symbol.get(new Builder()
+        return jenkins.getSymbol(new Builder()
                 .withName(imageName + "-circle-outline")
                 .withPluginName("ionicons-api")
                 .withClasses("details-icon details-icon-" + cssId)
