@@ -36,7 +36,7 @@ jQuery3(document).ready(function () {
                                     return '-';
                                 }
                                 const dateTime = luxon.DateTime.fromMillis(data * 1000);
-                                return '<span data-bs-toggle="tooltip" data-bs-placement="bottom" title="'
+                                return '<span data-bs-toggle="tooltip" data-bs-placement="top" title="'
                                     + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">'
                                     + dateTime.toRelative({locale: 'en'}) + '</span>';
                             }

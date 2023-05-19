@@ -6,21 +6,10 @@ tfoot {
     font-weight: bold;
 }
 
-/* Change color of active pagination, to fit to the material blue grey css */
-.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
-    background-color: #b4b4b4;
-    border-color: #b4b4b4;
-}
-
-/* Change color of inactive pagination, to fit to the material blue grey css */
-.pagination > li > a, .pagination > li > span {
-    color: #b4b4b4;
-}
-
-/* Change color of active pagination, to fit to the material blue grey css */
-.page-item.active .page-link {
-    background-color: #b4b4b4;
-    border-color: #b4b4b4;
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 4px 4px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
 }
 
 /* Add color for search (filter) highlighting */
@@ -83,10 +72,23 @@ div.details-control {
 /* ------------------------------------------------------------------------------------------------------------------- */
 /* DataTables select                                                                                                  */
 /* ------------------------------------------------------------------------------------------------------------------- */
-table.dataTable tbody > tr.selected, table.dataTable tbody > tr > .selected {
-    background-color: #b4b4b4 !important;
+
+table.dataTable.table-striped > tbody > tr.odd > * {
+    box-shadow: inset 0 0 0 9999px var(--table-background);
+    color: var(--text-color)
 }
 
-table.dataTable tbody tr.selected, table.dataTable tbody th.selected, table.dataTable tbody td.selected {
-    color: black !important;
+table.dataTable.table-striped > tbody > tr.even > * {
+    box-shadow: inset 0 0 0 9999px var(--background);
+    color: var(--text-color)
+}
+
+table.dataTable.table-striped > tbody > tr.odd.selected > * {
+    box-shadow: inset 0 0 0 9999px var(--medium-grey);
+    color: var(--text-color)
+}
+
+table.dataTable.table-striped > tbody > tr.even.selected > * {
+    box-shadow: inset 0 0 0 9999px var(--medium-grey);
+    color: var(--text-color)
 }
