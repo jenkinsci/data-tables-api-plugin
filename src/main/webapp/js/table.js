@@ -145,7 +145,10 @@ jQuery3(document).ready(function () {
                 });
             }
 
-            if (!table.hasClass("custom-persistence-off")) {
+            // Since Jenkins 2.406 Prototype has been removed from core.
+            // So we basically do not need to support a custom serialization of the data-tables state
+            // anymore. We can now use the default auto-save functionality of DataTables.
+            if (typeof Prototype === 'object') {
                 // Add event listener that stores the order a user selects
                 table.on('order.dt', function () {
                     const order = table.DataTable().order();

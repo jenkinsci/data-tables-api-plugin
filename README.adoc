@@ -57,11 +57,7 @@ with the following piece of code:
 
     <div class="table-responsive">
         <table
-          class="table table-hover table-striped display"
-          id="id"
-          <!-- enable to remember last search text. Per default false -->
-          data-remember-search-text="true"
-          >
+          class="table table-striped display" id="id">
             [...]
         </table>
     </div>
