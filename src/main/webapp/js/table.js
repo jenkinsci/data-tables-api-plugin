@@ -9,7 +9,7 @@ jQuery3(document).ready(function () {
          */
         function createDataTable(table) {
             const defaultConfiguration = {
-                stateSave: table.attr('data-disable-state-save') !== 'true',
+                stateSave: typeof Prototype !== 'object', // do not save state when Prototype is still loaded
                 language: {
                     emptyTable: 'Loading - please wait ...'
                 },
@@ -67,7 +67,8 @@ jQuery3(document).ready(function () {
             };
             const tableConfiguration = JSON.parse(table.attr('data-table-configuration'));
             // overwrite/merge the default configuration with values from the provided table configuration
-            const dataTable = table.DataTable(Object.assign(defaultConfiguration, tableConfiguration));
+            const mergedConfiguration = Object.assign(defaultConfiguration, tableConfiguration);
+            const dataTable = table.DataTable(mergedConfiguration);
             // add the buttons to the top of the table
             if (tableConfiguration.buttons) {
                 dataTable
