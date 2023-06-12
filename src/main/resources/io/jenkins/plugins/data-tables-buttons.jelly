@@ -17,4 +17,5 @@ Use it like <st:adjunct includes="io.jenkins.plugins.data-tables-buttons"/>
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/buttons.bootstrap5.min.js"/>
 
   <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/buttons.colVis.min.js"/>
+  <script type="text/javascript" src="${resURL}/plugin/data-tables-api/js/buttons.html5.min.js"/>
 </j:jelly>
