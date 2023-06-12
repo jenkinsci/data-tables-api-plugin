@@ -174,5 +174,5 @@ see https://github.com/jenkinsci/warnings-ng-plugin/blob/master/doc/images/detai
 
 You can find several examples of Jenkins views that use jQuery in the
 https://github.com/jenkinsci/warnings-ng-plugin[Warnings Next Generation plugin]
-and in the https://github.com/jenkinsci/warnings-ng-plugin[Forensics plugin].
+and in the https://github.com/jenkinsci/forensics-api-plugin[Forensics plugin].
 
