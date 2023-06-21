@@ -22,6 +22,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isNotUseResponsive();
         assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -29,7 +30,8 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
                 t -> assertThatJson(t).node("useButtons").isEqualTo(false),
                 t -> assertThatJson(t).node("stateSave").isEqualTo(false),
-                t -> assertThatJson(t).node("useSelect").isEqualTo(false)
+                t -> assertThatJson(t).node("useSelect").isEqualTo(false),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
         );
     }
 
@@ -43,6 +45,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isUseResponsive();
         assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -50,7 +53,8 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
                 t -> assertThatJson(t).node("useButtons").isEqualTo(false),
                 t -> assertThatJson(t).node("stateSave").isEqualTo(false),
-                t -> assertThatJson(t).node("useSelect").isEqualTo(false)
+                t -> assertThatJson(t).node("useSelect").isEqualTo(false),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
         );
     }
 
@@ -64,6 +68,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseResponsive();
         assertThat(configuration).isUseSelect();
         assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -71,7 +76,8 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
                 t -> assertThatJson(t).node("useButtons").isEqualTo(false),
                 t -> assertThatJson(t).node("stateSave").isEqualTo(false),
-                t -> assertThatJson(t).node("useSelect").asString().isEqualTo("single")
+                t -> assertThatJson(t).node("useSelect").asString().isEqualTo("single"),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
         );
     }
 
@@ -85,6 +91,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isUseColReorder();
         assertThat(configuration).isNotUseResponsive();
         assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -92,7 +99,8 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(true),
                 t -> assertThatJson(t).node("useButtons").isEqualTo(false),
                 t -> assertThatJson(t).node("stateSave").isEqualTo(false),
-                t -> assertThatJson(t).node("useSelect").isEqualTo(false)
+                t -> assertThatJson(t).node("useSelect").isEqualTo(false),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
         );
     }
 
@@ -106,6 +114,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isNotUseResponsive();
         assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -113,7 +122,8 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
                 t -> assertThatJson(t).node("useButtons").isEqualTo(true),
                 t -> assertThatJson(t).node("stateSave").isEqualTo(false),
-                t -> assertThatJson(t).node("useSelect").isEqualTo(false)
+                t -> assertThatJson(t).node("useSelect").isEqualTo(false),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
         );
     }
 
@@ -127,6 +137,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isNotUseResponsive();
         assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -134,7 +145,8 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
                 t -> assertThatJson(t).node("useButtons").isEqualTo("colvis: \"print\""),
                 t -> assertThatJson(t).node("stateSave").isEqualTo(false),
-                t -> assertThatJson(t).node("useSelect").isEqualTo(false)
+                t -> assertThatJson(t).node("useSelect").isEqualTo(false),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
         );
     }
 
@@ -148,6 +160,7 @@ public class TableConfigurationTest {
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isNotUseResponsive();
         assertThat(configuration).isUseStateSave();
+        assertThat(configuration).isUsePaging();
 
         assertThatJson(configuration).satisfiesAnyOf(
                 t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
@@ -155,7 +168,31 @@ public class TableConfigurationTest {
                 t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
                 t -> assertThatJson(t).node("useButtons").isEqualTo(false),
                 t -> assertThatJson(t).node("useSelect").isEqualTo(false),
-                t -> assertThatJson(t).node("stateSave").isEqualTo(true)
+                t -> assertThatJson(t).node("stateSave").isEqualTo(true),
+                t -> assertThatJson(t).node("paging").isEqualTo(true)
+        );
+    }
+
+    @Test
+    void shouldCreateNoPagingConfiguration() {
+        TableConfiguration configuration = new TableConfiguration()
+                .noPaging();
+
+        assertThat(configuration).hasConfiguration("{\"paging\":false}");
+        assertThat(configuration).isNotUseButtons();
+        assertThat(configuration).isNotUseColReorder();
+        assertThat(configuration).isNotUseResponsive();
+        assertThat(configuration).isNotUseStateSave();
+        assertThat(configuration).isNotUsePaging();
+
+        assertThatJson(configuration).satisfiesAnyOf(
+                t -> assertThatJson(t).node("configuration").asString().isEqualTo("{}"),
+                t -> assertThatJson(t).node("useResponsive").isEqualTo(false),
+                t -> assertThatJson(t).node("useColReorder").isEqualTo(false),
+                t -> assertThatJson(t).node("useButtons").isEqualTo(false),
+                t -> assertThatJson(t).node("useSelect").isEqualTo(false),
+                t -> assertThatJson(t).node("stateSave").isEqualTo(false),
+                t -> assertThatJson(t).node("paging").isEqualTo(false)
         );
     }
 }
