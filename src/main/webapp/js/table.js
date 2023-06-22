@@ -17,6 +17,7 @@ jQuery3(document).ready(function () {
                     details: false
                 },
                 deferRender: true,
+                paging: true,
                 pagingType: 'numbers', // page number button only
                 order: [[1, 'asc']], // default order, if not persisted yet
                 columnDefs: [

@@ -20,6 +20,7 @@ public class TableConfiguration {
     private boolean useButtons = false;
     private boolean useSelect = false;
     private boolean useStateSave = false;
+    private boolean usePaging = true;
 
     /**
      * Make the table responsive, i.e. the columns wrap over to a child column.
@@ -148,6 +149,28 @@ public class TableConfiguration {
      */
     public boolean isUseStateSave() {
         return useStateSave;
+    }
+
+    /**
+     * Disable paging.
+     *
+     * @return this {@link TableConfiguration} for chaining methods
+     *
+     * @see <a href="https://datatables.net/reference/option/paging">https://datatables.net/reference/option/paging</a>
+     */
+    public TableConfiguration noPaging() {
+        configuration.put("paging", false);
+        usePaging = false;
+        return this;
+    }
+
+    /**
+     * Returns whether paging is configured to be used.
+     *
+     * @return true, if paging should be used, false otherwise.
+     */
+    public boolean isUsePaging() {
+        return usePaging;
     }
 
     /**
