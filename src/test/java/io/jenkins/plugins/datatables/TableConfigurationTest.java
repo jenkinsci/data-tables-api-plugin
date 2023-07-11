@@ -12,7 +12,7 @@ import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
  *
  * @author Andreas Pabst
  */
-public class TableConfigurationTest {
+class TableConfigurationTest {
     @Test
     void shouldCreateEmptyConfiguration() {
         TableConfiguration configuration = new TableConfiguration();
