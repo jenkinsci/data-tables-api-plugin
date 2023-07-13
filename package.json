@@ -1,6 +1,6 @@
 {
   "name": "data-tables-api",
-  "version": "1.13.4",
+  "version": "1.13.5",
   "description": "JQuery DataTables Jenkins Plugin",
   "directories": {
     "doc": "doc"
