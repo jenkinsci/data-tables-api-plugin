@@ -14,7 +14,7 @@
     "datatables.net-select-bs5": "1.7.0",
     "datatables.mark.js": "2.1.0",
     "mark.js": "8.11.1",
-    "luxon": "3.4.2"
+    "luxon": "3.4.3"
   },
   "devDependencies": {
     "remark-cli": "11.0.0",
