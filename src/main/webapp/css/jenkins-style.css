@@ -1,8 +1,11 @@
-/* ------------------------------------------------------------------------------------------------------------------- */
-/* DataTables Material Design                                                                                          */
-/* ------------------------------------------------------------------------------------------------------------------- */
+th.sorting, th.no-sort {
+    color: var(--text-color);
+    background: var(--table-background);
+}
 
-tfoot {
+table.dataTable tfoot td {
+    color: var(--text-color);
+    background: var(--table-background);
     font-weight: bold;
 }
 
