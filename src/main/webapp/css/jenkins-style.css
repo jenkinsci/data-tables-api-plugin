@@ -1,11 +1,11 @@
-th.sorting, th.no-sort {
+th.sorting, th.no-sort, th.nosort {
     color: var(--text-color);
-    background: var(--table-background);
+    background: var(--background);
 }
 
 table.dataTable tfoot td {
     color: var(--text-color);
-    background: var(--table-background);
+    background: var(--background);
     font-weight: bold;
 }
 
