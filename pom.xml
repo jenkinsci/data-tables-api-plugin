@@ -12,13 +12,13 @@
   <groupId>io.jenkins.plugins</groupId>
   <packaging>hpi</packaging>
   <name>DataTables.net API Plugin</name>
-  <version>1.13.6-4</version>
+  <version>${revision}${changelist}</version>
 
   <description>Provides jQuery DataTables for Jenkins plugins.</description>
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
-    <revision>1.13.6-4</revision>
+    <revision>1.13.6-5</revision>
     <changelist>-SNAPSHOT</changelist>
 
     <json-unit-assertj.version>2.38.0</json-unit-assertj.version>
@@ -264,7 +264,7 @@
     <connection>scm:git:https://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-    <tag>v1.13.6-4</tag>
+    <tag>${scmTag}</tag>
   </scm>
 
   <repositories>
