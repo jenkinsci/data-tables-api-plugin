@@ -136,6 +136,15 @@ jQuery3(document).ready(function () {
                     const tooltip = new bootstrap5.Tooltip($(this)[0]);
                     tooltip.enable();
                 });
+                table.find('.details-icon-close').each(function () {
+                    $(this).hide();
+                });
+                table.find('.details-icon-open').each(function () {
+                    $(this).show();
+                });
+                table.rows().every(function () {
+                    this.child.hide();
+                });
             });
 
             if (table.is(":visible")) {
