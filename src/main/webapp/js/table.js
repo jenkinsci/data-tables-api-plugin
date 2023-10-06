@@ -132,19 +132,27 @@ jQuery3(document).ready(function () {
             });
 
             table.on('draw.dt', function () {
+                // Re-enable tooltips
                 table.find('[data-bs-toggle="tooltip"]').each(function () {
                     const tooltip = new bootstrap5.Tooltip($(this)[0]);
                     tooltip.enable();
                 });
-                table.find('.details-icon-close').each(function () {
-                    $(this).hide();
-                });
-                table.find('.details-icon-open').each(function () {
-                    $(this).show();
-                });
-                table.rows().every(function () {
-                    this.child.hide();
-                });
+
+                // Re-draw details icon state
+                dataTable.rows().every(function (rowIndex, tableLoop, rowLoop) {
+                    const tr = $(this.node());
+                    const openRowButton = tr.find('.details-icon-open');
+                    const closeRowButton = tr.find('.details-icon-close');
+
+                    if (this.child.isShown()) {
+                        openRowButton.hide();
+                        closeRowButton.show();
+                    }
+                    else {
+                        openRowButton.show();
+                        closeRowButton.hide();
+                    }
+                } );
             });
 
             if (table.is(":visible")) {
@@ -156,7 +164,8 @@ jQuery3(document).ready(function () {
                 });
             }
 
-            // Since Jenkins 2.406 Prototype has been removed from core.
+            // TODO: Remove this block once Jenkins 2.426.1 is released
+            // Since Jenkins 2.406 Prototype has been removed.
             // So we basically do not need to support a custom serialization of the data-tables state
             // anymore. We can now use the default auto-save functionality of DataTables.
             if (typeof Prototype === 'object') {
