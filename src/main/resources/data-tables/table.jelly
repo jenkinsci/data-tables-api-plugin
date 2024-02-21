@@ -50,6 +50,6 @@
     </table>
   </div>
 
-  <script>var tableDataProxy = <st:bind value="${it}"/></script>
+  <st:bind var="tableDataProxy" value="${it}" />
 
 </j:jelly>
