@@ -6,7 +6,7 @@
     "doc": "doc"
   },
   "dependencies": {
-    "datatables.net": "1.13.8",
+    "datatables.net": "2.0.0",
     "datatables.net-bs5": "1.13.8",
     "datatables.net-buttons": "2.4.3",
     "datatables.net-buttons-bs5": "2.4.3",
