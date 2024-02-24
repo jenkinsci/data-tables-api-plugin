@@ -23,8 +23,6 @@
 
     <module.name>${project.groupId}.datatables</module.name>
 
-    <jenkins.version>2.426.1</jenkins.version>
-
     <json-unit-assertj.version>2.38.0</json-unit-assertj.version>
   </properties>
 
