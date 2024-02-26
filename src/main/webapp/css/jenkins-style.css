@@ -1,11 +1,28 @@
+/* Styling without stripes */
+
+/*table {*/
+/*    border-collapse:collapse;*/
+/*}*/
+
+/*tr {*/
+/*    border-bottom: 1pt solid var(--bs-table-border-color);*/
+/*}*/
+
+/*tr.dt-hasChild {*/
+/*    border-bottom: 0;*/
+/*}*/
+
+/*tr:last-child {*/
+/*    border-bottom: .5pt solid var(--medium-grey);*/
+/*}*/
+
 /* Add rounded border for table header hover */
 table.dataTable thead > tr > th.dt-orderable-asc:hover, table.dataTable thead > tr > th.dt-orderable-desc:hover,
 table.dataTable thead > tr > td.dt-orderable-asc:hover,
 table.dataTable thead > tr > td.dt-orderable-desc:hover {
-    outline: 1.5px solid rgba(0, 0, 0, 0.05);
-    outline-offset: -2px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    outline: 1.5px solid var(--bs-table-border-color);
+    outline-offset: -5px;
+    border-radius: 10px;
 }
 
 th.sorting, th.no-sort, th.nosort {
