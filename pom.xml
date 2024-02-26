@@ -18,7 +18,7 @@
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
-    <revision>1.13.8-5</revision>
+    <revision>2.0.0-1</revision>
     <changelist>-SNAPSHOT</changelist>
 
     <module.name>${project.groupId}.datatables</module.name>
@@ -135,42 +135,72 @@
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-bs5/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-buttons/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-buttons-bs5/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-colreorder/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-colreorder-bs5/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-responsive/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-responsive-bs5/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-select/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.net-select-bs5/js</directory>
                   <filtering>false</filtering>
+                  <excludes>
+                    <exclude>*mjs*</exclude>
+                  </excludes>
                 </resource>
                 <resource>
                   <directory>${project.basedir}/node_modules/datatables.mark.js/dist</directory>
