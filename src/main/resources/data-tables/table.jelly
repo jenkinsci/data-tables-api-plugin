@@ -36,7 +36,7 @@
     <j:if test="${model.tableConfiguration.useButtons}">
       <div class="table-buttons-container clearfix"/>
     </j:if>
-    <table class="table table-hover table-striped data-table dt-responsive nowrap ${class}"
+    <table class="table table-hover data-table dt-responsive nowrap ${class}"
            data-columns-definition="${model.columnsDefinition}" id="${model.id}"
            data-table-configuration="${model.tableConfigurationDefinition}"
            style="width: 100%;">
