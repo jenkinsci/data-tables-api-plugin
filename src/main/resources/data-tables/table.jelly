@@ -5,6 +5,10 @@
     an Ajax call. In order to correctly connect the jelly view with the Jenkins ModelObject via a Stapler proxy
     your model Java class needs to implement the AsyncTableContentProvider interface.
 
+    If you need additional toolbar controls you can create such controls in the body of this tag. All controls in
+    the body will be rendered in the top-left corner of the table. An example is available in the
+    Coverage Plugin's [coverage-table.jelly](https://github.com/jenkinsci/coverage-plugin/blob/main/plugin/src/main/resources/coverage/coverage-table.jelly) view.
+
     <st:attribute name="model" use="required" type="io.jenkins.plugins.datatables.TableModel">
       The model of the table.
     </st:attribute>
