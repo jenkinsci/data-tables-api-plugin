@@ -8,7 +8,24 @@ jQuery3(document).ready(function () {
          * Creates the data table instance for the specified table element.
          */
         function createDataTable(table) {
+            const toolbar = $(table).next();
+            let toolbarContent;
+            let bottom;
+            if (toolbar.length && toolbar.children().length > 0) {
+                toolbarContent = toolbar;
+                bottom = ['pageLength', 'info'];
+            }
+            else {
+                toolbarContent = 'pageLength';
+                bottom = 'info';
+            }
             const defaultConfiguration = {
+                layout: {
+                    topStart: toolbarContent,
+                    topEnd: 'search',
+                    bottomStart: bottom,
+                    bottomEnd: 'paging'
+                },
                 stateSave: true,
                 language: {
                     emptyTable: 'Loading - please wait ...'
