@@ -58,9 +58,7 @@ jQuery3(document).ready(function () {
                                     + dateTime.toLocaleString(luxon.DateTime.DATETIME_SHORT) + '">'
                                     + dateTime.toRelative({locale: 'en'}) + '</span>';
                             }
-                            else {
-                                return data;
-                            }
+                            return data;
                         }
                     },
                     {
