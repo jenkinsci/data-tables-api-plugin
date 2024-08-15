@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.jvnet.hudson.plugins</groupId>
     <artifactId>analysis-pom</artifactId>
-    <version>8.5.0</version>
+    <version>8.6.0</version>
     <relativePath />
   </parent>
 
@@ -23,7 +23,7 @@
 
     <module.name>${project.groupId}.datatables</module.name>
 
-    <json-unit-assertj.version>2.40.0</json-unit-assertj.version>
+    <json-unit-assertj.version>2.40.1</json-unit-assertj.version>
   </properties>
 
   <licenses>
