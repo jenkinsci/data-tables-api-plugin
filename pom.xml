@@ -18,7 +18,7 @@
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
-    <revision>2.1.6-2</revision>
+    <revision>2.1.8-1</revision>
     <changelist>-SNAPSHOT</changelist>
 
     <module.name>${project.groupId}.datatables</module.name>
