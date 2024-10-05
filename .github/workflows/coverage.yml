@@ -3,7 +3,6 @@ name: 'CodeCov'
 on:
   push:
     branches:
-      - master
       - main
   pull_request:
 
@@ -27,9 +26,10 @@ jobs:
         with:
           maven-version: 3.9.9
       - name: Generate coverage with JaCoCo
-        run: mvn -V --color always -ntp clean verify '-Dgpg.skip'
+        run: mvn -V --color always -ntp clean verify -Pci
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4.5.0
+        uses: codecov/codecov-action@v4.6.0
         with:
-          files: 'target/site/jacoco/jacoco.xml'
+          file: 'target/site/jacoco/jacoco.xml'
+          disable_search: true
           token: ${{secrets.CODECOV_TOKEN}}
