@@ -6,6 +6,7 @@ import hudson.model.ModelObject;
  * Defines additional API methods a Jenkins {@link ModelObject} must provide in order to render JQuery DataTables in a
  * corresponding jelly view using the tag {@code table.jelly} of the {@code data-tables-api-plugin}. Those tables will
  * have the data loaded asynchronously using an Ajax call.
+ *
  * <p>
  * Typically, you do not need to implement this interface directly. Preferred way is to use the default implementation
  * in {@link DefaultAsyncTableContentProvider} that already provides the correct extraction of the data rows as JSON
