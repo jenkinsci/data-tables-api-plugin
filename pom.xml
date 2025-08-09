@@ -12,14 +12,14 @@
   <groupId>io.jenkins.plugins</groupId>
   <packaging>hpi</packaging>
   <name>DataTables.net API Plugin</name>
-  <version>${revision}${changelist}</version>
+  <version>${revision}-${changelist}</version>
 
   <description>Provides jQuery DataTables for Jenkins plugins.</description>
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
-    <revision>2.3.2-4</revision>
-    <changelist>-SNAPSHOT</changelist>
+    <revision>2.3.2</revision>
+    <changelist>999999-SNAPSHOT</changelist>
 
     <module.name>${project.groupId}.datatables</module.name>
 
