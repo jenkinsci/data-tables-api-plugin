@@ -256,7 +256,8 @@
           </packages>
           <excludes>
             <exclude>.*DetailedCell.*</exclude>
-            <exclude>.*TableModelDetailedColumnDefinition.*</exclude>
+            <exclude>.*TableModel.DetailedColumnDefinition</exclude>
+            <exclude>.*TableModel.DetailedColumnDefinition</exclude>
           </excludes>
           <entryPointClassPackage>io.jenkins.plugins.datatables.assertions</entryPointClassPackage>
         </configuration>
