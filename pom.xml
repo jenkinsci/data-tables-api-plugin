@@ -18,12 +18,12 @@
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
   <properties>
-    <revision>2.3.4</revision>
+    <revision>2.3.5</revision>
     <changelist>999999-SNAPSHOT</changelist>
 
     <module.name>${project.groupId}.datatables</module.name>
 
-    <json-unit-assertj.version>5.0.0</json-unit-assertj.version>
+    <json-unit-assertj.version>5.1.0</json-unit-assertj.version>
   </properties>
 
   <licenses>
