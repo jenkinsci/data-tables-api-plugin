@@ -15,14 +15,13 @@ tr:last-child {
 }
 
 /* Align DataTables header hover with Jenkins core tables */
-table.dataTable thead > tr > th.dt-orderable-asc:hover,
-table.dataTable thead > tr > th.dt-orderable-desc:hover,
-table.dataTable thead > tr > td.dt-orderable-asc:hover,
-table.dataTable thead > tr > td.dt-orderable-desc:hover {
+table.dataTable thead > tr > th:hover,
+table.dataTable thead > tr > td:hover {
     background-color: var(--table-header-hover-bg, var(--background-hover));
     box-shadow: inset 0 0 0 1px var(--table-border-color);
-    border-radius: 14px;
+    border-radius: 2px;
 }
+
 
 th.sorting, th.no-sort, th.nosort {
     color: var(--text-color);
