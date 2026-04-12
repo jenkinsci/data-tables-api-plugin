@@ -74,6 +74,11 @@ class TableColumnTest {
 
         TableColumn withPriority = builder.withResponsivePriority(1).build();
         assertThatJson(withPriority.getDefinition()).node(RESPONSIVE_PRIORITY).isEqualTo(1);
+        assertThatJson(withPriority.getDefinition()).node(RENDER).node("_").isEqualTo("display");
+        assertThatJson(withPriority.getDefinition()).node(RENDER).node("sort").isEqualTo("sort");
+
+        TableColumn withSimple = builder.withPlainValueCell().build();
+        assertThatJson(withSimple.getDefinition()).node(RENDER).isAbsent();
     }
 
     @Test
