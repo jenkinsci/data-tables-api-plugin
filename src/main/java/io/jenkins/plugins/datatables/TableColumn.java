@@ -298,6 +298,17 @@ public class TableColumn {
         }
 
         /**
+         * Disables the rendering of cells with the {@link DetailedCell} format. A cell then simply contains a value.
+         *
+         * @return this column
+         */
+        public ColumnBuilder withPlainValueCell() {
+            this.isDetailedCellEnabled = false;
+
+            return this;
+        }
+
+        /**
          * Creates a new {@link TableColumn} based on the specified builder configuration.
          *
          * @return the created {@link TableColumn}
