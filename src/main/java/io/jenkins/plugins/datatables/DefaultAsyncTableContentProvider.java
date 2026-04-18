@@ -1,9 +1,7 @@
 package io.jenkins.plugins.datatables;
 
 import java.util.List;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 
 import org.kohsuke.stapler.bind.JavaScriptMethod;
 
@@ -21,12 +19,6 @@ public abstract class DefaultAsyncTableContentProvider implements AsyncTableCont
     }
 
     private String toJsonArray(final List<Object> rows) {
-        try {
-            return new ObjectMapper().writeValueAsString(rows);
-        }
-        catch (JsonProcessingException exception) {
-            throw new IllegalArgumentException(
-                    String.format("Can't convert table rows '%s' to JSON object", rows), exception);
-        }
+        return new ObjectMapper().writeValueAsString(rows);
     }
 }
