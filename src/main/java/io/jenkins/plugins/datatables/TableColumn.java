@@ -3,11 +3,10 @@ package io.jenkins.plugins.datatables;
 import org.apache.commons.lang3.StringUtils;
 import org.jenkins.ui.symbol.SymbolRequest.Builder;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import edu.umd.cs.findbugs.annotations.CheckForNull;
+
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 
 import io.jenkins.plugins.util.JenkinsFacade;
 
@@ -325,27 +324,21 @@ public class TableColumn {
         private String createDefinition() {
             ObjectMapper mapper = new ObjectMapper();
             ObjectNode columnDefinition = mapper.createObjectNode();
-            try {
-                if (propertyKey == null) {
-                    throw new IllegalArgumentException("No 'dataPropertyKey' defined, see #withDataPropertyKey");
-                }
-                columnDefinition.put("data", propertyKey);
-                columnDefinition.put("type", type.dataTablesType);
-                if (responsivePriority != DEFAULT_PRIORITY) { // optional property
-                    columnDefinition.put("responsivePriority", responsivePriority);
-                }
-                if (isDetailedCellEnabled) {
-                    ObjectNode detailedRenderer = mapper.createObjectNode();
-                    detailedRenderer.put("_", "display");
-                    detailedRenderer.put("sort", "sort");
-                    columnDefinition.set("render", detailedRenderer);
-                }
-                return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(columnDefinition);
+            if (propertyKey == null) {
+                throw new IllegalArgumentException("No 'dataPropertyKey' defined, see #withDataPropertyKey");
             }
-            catch (JsonProcessingException exception) {
-                throw new IllegalArgumentException("Can't convert to JSON: " + columnDefinition,
-                        exception);
+            columnDefinition.put("data", propertyKey);
+            columnDefinition.put("type", type.dataTablesType);
+            if (responsivePriority != DEFAULT_PRIORITY) { // optional property
+                columnDefinition.put("responsivePriority", responsivePriority);
             }
+            if (isDetailedCellEnabled) {
+                ObjectNode detailedRenderer = mapper.createObjectNode();
+                detailedRenderer.put("_", "display");
+                detailedRenderer.put("sort", "sort");
+                columnDefinition.set("render", detailedRenderer);
+            }
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(columnDefinition);
         }
     }
 

@@ -2,10 +2,8 @@ package io.jenkins.plugins.datatables;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.annotation.JsonSerialize;
 
 /**
  * Provides a configuration for the whole DataTable. This is merged with a default configuration in table.js.
@@ -26,8 +24,8 @@ public class TableConfiguration {
      * Make the table responsive, i.e. the columns wrap over to a child column.
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
-     * @see <a href="https://datatables.net/extensions/responsive/">https://datatables.net/extensions/responsive/</a>
+     * @see <a
+     *         href="https://datatables.net/extensions/responsive/">https://datatables.net/extensions/responsive/</a>
      */
     public TableConfiguration responsive() {
         configuration.put("responsive", true);
@@ -48,8 +46,8 @@ public class TableConfiguration {
      * Enable reordering of table columns.
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
-     * @see <a href="https://datatables.net/extensions/colreorder/">https://datatables.net/extensions/colreorder/</a>
+     * @see <a
+     *         href="https://datatables.net/extensions/colreorder/">https://datatables.net/extensions/colreorder/</a>
      */
     public TableConfiguration colReorder() {
         configuration.put("colReorder", true);
@@ -70,7 +68,6 @@ public class TableConfiguration {
      * Enable the default buttons.
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
      * @see <a href="https://datatables.net/extensions/buttons/">https://datatables.net/extensions/buttons/</a>
      */
     public TableConfiguration buttons() {
@@ -86,8 +83,8 @@ public class TableConfiguration {
      *         List of buttons to use
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
-     * @see <a href="https://datatables.net/extensions/buttons/built-in">https://datatables.net/extensions/buttons/built-in</a>
+     * @see <a
+     *         href="https://datatables.net/extensions/buttons/built-in">https://datatables.net/extensions/buttons/built-in</a>
      */
     public TableConfiguration buttons(final String... types) {
         configuration.put("buttons", types);
@@ -108,11 +105,11 @@ public class TableConfiguration {
      * Enable selection.
      *
      * @param selectStyle
-     *          The {@link SelectStyle selection style}
+     *         The {@link SelectStyle selection style}
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
-     * @see <a href="https://datatables.net/reference/option/select">https://datatables.net/reference/option/select</a>
+     * @see <a
+     *         href="https://datatables.net/reference/option/select">https://datatables.net/reference/option/select</a>
      */
     public TableConfiguration select(final SelectStyle selectStyle) {
         configuration.put("select", selectStyle.getStyle());
@@ -133,8 +130,8 @@ public class TableConfiguration {
      * Enable saving of the table state.
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
-     * @see <a href="https://datatables.net/reference/option/stateSave">https://datatables.net/reference/option/stateSave</a>
+     * @see <a
+     *         href="https://datatables.net/reference/option/stateSave">https://datatables.net/reference/option/stateSave</a>
      */
     public TableConfiguration stateSave() {
         configuration.put("stateSave", true);
@@ -155,8 +152,8 @@ public class TableConfiguration {
      * Disable paging.
      *
      * @return this {@link TableConfiguration} for chaining methods
-     *
-     * @see <a href="https://datatables.net/reference/option/paging">https://datatables.net/reference/option/paging</a>
+     * @see <a
+     *         href="https://datatables.net/reference/option/paging">https://datatables.net/reference/option/paging</a>
      */
     public TableConfiguration noPaging() {
         configuration.put("paging", false);
@@ -179,13 +176,7 @@ public class TableConfiguration {
      * @return a JSON Object with the configuration
      */
     public String getConfiguration() {
-        try {
-            return new ObjectMapper().writeValueAsString(configuration);
-        }
-        catch (JsonProcessingException exception) {
-            throw new IllegalArgumentException(
-                    String.format("Can't convert table configuration '%s' to JSON object", configuration), exception);
-        }
+        return new ObjectMapper().writeValueAsString(configuration);
     }
 
     /**
@@ -197,8 +188,9 @@ public class TableConfiguration {
     }
 
     /**
-     * The possible values of the <a href="https://datatables.net/reference/option/select.style">select.style</a> option,
-     * which is used for enabling the selection for datatables and setting its style (the default is {@link #OS}.
+     * The possible values of the <a href="https://datatables.net/reference/option/select.style">select.style</a>
+     * option, which is used for enabling the selection for datatables and setting its style (the default is
+     * {@link #OS}.
      *
      * @author Florian Orendi
      */
@@ -209,8 +201,8 @@ public class TableConfiguration {
         API("api"),
 
         /**
-         * Only a single item can be selected, any other selected items will be automatically
-         * deselected when a new item is selected.
+         * Only a single item can be selected, any other selected items will be automatically deselected when a new item
+         * is selected.
          */
         SINGLE("single"),
 
@@ -220,16 +212,15 @@ public class TableConfiguration {
         MULTI("multi"),
 
         /**
-         * Operating System (OS) style selection.
-         * This is the most comprehensive option and provides complex behaviours such as ctrl/cmd clicking
-         * to select / deselect individual items, shift clicking to select ranges
-         * and an unmodified click to select a single item.
+         * Operating System (OS) style selection. This is the most comprehensive option and provides complex behaviours
+         * such as ctrl/cmd clicking to select / deselect individual items, shift clicking to select ranges and an
+         * unmodified click to select a single item.
          */
         OS("os"),
 
         /**
-         * A hybrid between the {@link #OS} style and {@link #MULTI},
-         * allowing easy multi-row selection without immediate de-selection when clicking on a row.
+         * A hybrid between the {@link #OS} style and {@link #MULTI}, allowing easy multi-row selection without
+         * immediate de-selection when clicking on a row.
          */
         MULTI_SHIFT("multi+shift");
 
