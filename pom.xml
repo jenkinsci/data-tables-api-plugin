@@ -18,15 +18,6 @@
   <description>Provides jQuery DataTables for Jenkins plugins.</description>
   <url>https://github.com/jenkinsci/data-tables-api-plugin</url>
 
-  <properties>
-    <revision>2.3.8</revision>
-    <changelist>999999-SNAPSHOT</changelist>
-
-    <module.name>${project.groupId}.datatables</module.name>
-
-    <json-unit-assertj.version>6.3.0</json-unit-assertj.version>
-  </properties>
-
   <licenses>
     <license>
       <name>MIT license</name>
@@ -48,6 +39,15 @@
     <tag>${scmTag}</tag>
     <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
   </scm>
+
+  <properties>
+    <revision>2.3.8</revision>
+    <changelist>999999-SNAPSHOT</changelist>
+
+    <module.name>${project.groupId}.datatables</module.name>
+
+    <json-unit-assertj.version>6.3.0</json-unit-assertj.version>
+  </properties>
 
   <dependencies>
     <dependency>
