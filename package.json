@@ -6,6 +6,7 @@
     "doc": "doc"
   },
   "dependencies": {
+    "datatables.mark.js": "2.1.0",
     "datatables.net": "2.3.8",
     "datatables.net-bs5": "2.3.8",
     "datatables.net-buttons": "3.2.6",
@@ -16,12 +17,11 @@
     "datatables.net-responsive-bs5": "3.0.2",
     "datatables.net-select": "3.1.3",
     "datatables.net-select-bs5": "3.1.3",
-    "datatables.mark.js": "2.1.0",
-    "mark.js": "8.11.1",
-    "luxon": "3.7.2"
+    "luxon": "3.7.2",
+    "mark.js": "8.11.1"
   },
   "devDependencies": {
-    "remark-cli": "12.0.1",
+    "remark-cli": "^12.0.1",
     "remark-lint": "10.0.1",
     "remark-preset-lint-recommended": "7.0.1"
   },
@@ -41,5 +41,8 @@
   },
   "author": "Ullrich Hafner",
   "license": "MIT",
-  "homepage": "https://github.com/jenkinsci/data-tables-api#readme"
+  "homepage": "https://github.com/jenkinsci/data-tables-api#readme",
+  "allowScripts": {
+    "fsevents@2.3.3": true
+  }
 }

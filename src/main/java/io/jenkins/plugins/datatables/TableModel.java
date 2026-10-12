@@ -36,9 +36,7 @@ public abstract class TableModel {
      * @see <a href="https://datatables.net/manual/data/#Objects">DataTables API Reference</a>
      */
     public String getColumnsDefinition() {
-        return getColumns().stream()
-                .map(TableColumn::getDefinition)
-                .collect(Collectors.joining(",", "[", "]"));
+        return getColumns().stream().map(TableColumn::getDefinition).collect(Collectors.joining(",", "[", "]"));
     }
 
     /**

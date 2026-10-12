@@ -184,8 +184,7 @@ public class TableConfiguration {
      * objects, but this can be changed via the @{@link JsonSerialize} annotation.
      */
     @JsonSerialize
-    private static class EmptyConfigObject {
-    }
+    private static class EmptyConfigObject {}
 
     /**
      * The possible values of the <a href="https://datatables.net/reference/option/select.style">select.style</a>

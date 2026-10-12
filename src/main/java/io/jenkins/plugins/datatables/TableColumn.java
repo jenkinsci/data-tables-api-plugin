@@ -1,16 +1,13 @@
 package io.jenkins.plugins.datatables;
 
-import org.apache.commons.lang3.StringUtils;
-import org.jenkins.ui.symbol.SymbolRequest.Builder;
+import static j2html.TagCreator.*;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
-
+import io.jenkins.plugins.util.JenkinsFacade;
+import org.apache.commons.lang3.StringUtils;
+import org.jenkins.ui.symbol.SymbolRequest.Builder;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.node.ObjectNode;
-
-import io.jenkins.plugins.util.JenkinsFacade;
-
-import static j2html.TagCreator.*;
 
 /**
  * Provides a model for table columns that are rendered with JQuery DataTables. The model consists of the following
@@ -50,11 +47,10 @@ public class TableColumn {
      * @return the HTML div to create the details column
      */
     public static String renderDetailsColumn(final String detailsText, final JenkinsFacade jenkinsFacade) {
-        return div()
-                .withClass("details-control")
+        return div().withClass("details-control")
                 .attr("data-description", detailsText)
-                .with(join(symbol("add", "open", jenkinsFacade),
-                        symbol("remove", "close", jenkinsFacade))).render();
+                .with(join(symbol("add", "open", jenkinsFacade), symbol("remove", "close", jenkinsFacade)))
+                .render();
     }
 
     private static String symbol(final String imageName, final String cssId, final JenkinsFacade jenkins) {
@@ -90,10 +86,7 @@ public class TableColumn {
     @Deprecated
     public TableColumn(final String headerLabel, final String dataPropertyName) {
         this.headerLabel = headerLabel;
-        definition = String.format("{"
-                + "  \"data\": \"%s\","
-                + "  \"defaultContent\": \"\""
-                + "}", dataPropertyName);
+        definition = String.format("{" + "  \"data\": \"%s\"," + "  \"defaultContent\": \"\"" + "}", dataPropertyName);
     }
 
     /**
@@ -112,15 +105,17 @@ public class TableColumn {
     @Deprecated
     public TableColumn(final String headerLabel, final String dataPropertyName, final String columnDataType) {
         this.headerLabel = headerLabel;
-        definition = String.format("{"
-                + "  \"type\": \"%s\","
-                + "  \"data\": \"%s\","
-                + "  \"defaultContent\": \"\","
-                + "  \"render\": {"
-                + "     \"_\": \"display\","
-                + "     \"sort\": \"sort\""
-                + "  }"
-                + "}", columnDataType, dataPropertyName);
+        definition = String.format(
+                "{"
+                        + "  \"type\": \"%s\","
+                        + "  \"data\": \"%s\","
+                        + "  \"defaultContent\": \"\","
+                        + "  \"render\": {"
+                        + "     \"_\": \"display\","
+                        + "     \"sort\": \"sort\""
+                        + "  }"
+                        + "}",
+                columnDataType, dataPropertyName);
     }
 
     /**
@@ -184,10 +179,13 @@ public class TableColumn {
      */
     public static class ColumnBuilder {
         private static final int DEFAULT_PRIORITY = 10_000;
+
         @CheckForNull
         private String header;
+
         @CheckForNull
         private String propertyKey;
+
         private ColumnType type = ColumnType.STRING;
         private int responsivePriority = DEFAULT_PRIORITY; // default priority of datatables
         private ColumnCss headerCssClass = ColumnCss.NONE; // No specific class
@@ -213,7 +211,7 @@ public class TableColumn {
                     withHeaderClass(ColumnCss.NUMBER);
                     break;
                 default:
-                    // no special handling
+                // no special handling
             }
             return this;
         }
