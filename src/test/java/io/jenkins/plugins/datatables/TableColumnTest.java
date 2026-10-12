@@ -1,11 +1,11 @@
 package io.jenkins.plugins.datatables;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.jupiter.api.Test;
-
 import static io.jenkins.plugins.datatables.TableColumn.*;
 import static io.jenkins.plugins.datatables.assertions.Assertions.*;
 import static net.javacrumbs.jsonunit.assertj.JsonAssertions.*;
+
+import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests the classes {@link TableColumn} and {@link ColumnBuilder}.
@@ -39,9 +39,8 @@ class TableColumnTest {
     void shouldCreateColumnWithSimpleDescription() {
         ColumnBuilder builder = new ColumnBuilder();
 
-        TableColumn noPriority = builder.withHeaderLabel(LABEL)
-                .withDataPropertyKey(KEY)
-                .build();
+        TableColumn noPriority =
+                builder.withHeaderLabel(LABEL).withDataPropertyKey(KEY).build();
 
         assertThat(noPriority).hasHeaderLabel(LABEL).hasHeaderClass(StringUtils.EMPTY);
         assertThatJson(noPriority.getDefinition()).node(DATA).isEqualTo(KEY);
@@ -85,9 +84,8 @@ class TableColumnTest {
     void shouldCreateColumnWithOtherProperties() {
         ColumnBuilder builder = new ColumnBuilder();
 
-        TableColumn column = builder.withHeaderLabel(LABEL)
-                .withDataPropertyKey(KEY)
-                .build();
+        TableColumn column =
+                builder.withHeaderLabel(LABEL).withDataPropertyKey(KEY).build();
 
         assertThat(column).hasHeaderLabel(LABEL);
         assertThatJson(column.getDefinition()).node(DATA).isEqualTo(KEY);
@@ -97,14 +95,10 @@ class TableColumnTest {
     void shouldVerifyCssStyle() {
         ColumnBuilder builder = new ColumnBuilder().withHeaderLabel(LABEL).withDataPropertyKey(KEY);
 
-        assertThat(builder.withHeaderClass(ColumnCss.NO_SORT)
-                .build()).hasHeaderClass("nosort");
+        assertThat(builder.withHeaderClass(ColumnCss.NO_SORT).build()).hasHeaderClass("nosort");
 
-        assertThat(builder.withType(ColumnType.NUMBER)
-                .build()).hasHeaderClass("text-end");
-        assertThat(builder.withHeaderClass(ColumnCss.PERCENTAGE)
-                .build()).hasHeaderClass("percentage");
-        assertThat(builder.withType(ColumnType.FORMATTED_NUMBER)
-                .build()).hasHeaderClass("text-end");
+        assertThat(builder.withType(ColumnType.NUMBER).build()).hasHeaderClass("text-end");
+        assertThat(builder.withHeaderClass(ColumnCss.PERCENTAGE).build()).hasHeaderClass("percentage");
+        assertThat(builder.withType(ColumnType.FORMATTED_NUMBER).build()).hasHeaderClass("text-end");
     }
 }

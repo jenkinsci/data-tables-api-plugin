@@ -1,9 +1,8 @@
 package io.jenkins.plugins.datatables;
 
 import java.util.List;
-import tools.jackson.databind.ObjectMapper;
-
 import org.kohsuke.stapler.bind.JavaScriptMethod;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * An {@link AsyncTableContentProvider} that provides a default implementation to extract the rows of a given date table
