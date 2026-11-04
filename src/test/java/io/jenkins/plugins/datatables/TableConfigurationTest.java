@@ -17,6 +17,7 @@ class TableConfigurationTest {
         TableConfiguration configuration = new TableConfiguration();
 
         assertThat(configuration).hasConfiguration("{}");
+        assertThat(configuration).isNotUseOptimalPageLength();
         assertThat(configuration).isNotUseButtons();
         assertThat(configuration).isNotUseColReorder();
         assertThat(configuration).isNotUseResponsive();
@@ -54,6 +55,19 @@ class TableConfigurationTest {
                         t -> assertThatJson(t).node("stateSave").isEqualTo(false),
                         t -> assertThatJson(t).node("useSelect").isEqualTo(false),
                         t -> assertThatJson(t).node("paging").isEqualTo(true));
+    }
+
+    /**
+     * Verifies that the optimal page length can be enabled.
+     */
+    @Test
+    void shouldCreateOptimalPageLengthConfiguration() {
+        TableConfiguration configuration = new TableConfiguration().optimalPageLength();
+
+        assertThat(configuration).hasConfiguration("{\"optimalPageLength\":true}");
+        assertThat(configuration).isUseOptimalPageLength();
+        assertThat(configuration).isUsePaging();
+        assertThat(configuration).isNotUseStateSave();
     }
 
     @Test
