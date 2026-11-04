@@ -19,6 +19,7 @@ public class TableConfiguration {
     private boolean useSelect = false;
     private boolean useStateSave = false;
     private boolean usePaging = true;
+    private boolean useOptimalPageLength = false;
 
     /**
      * Make the table responsive, i.e. the columns wrap over to a child column.
@@ -168,6 +169,30 @@ public class TableConfiguration {
      */
     public boolean isUsePaging() {
         return usePaging;
+    }
+
+    /**
+     * Enable the page length option "Optimal". This option is the first entry of the page length menu and is selected
+     * by default. Its value is computed in the browser: the table shows as many rows as fit into the browser window
+     * without scrolling the page. The other entries of the page length menu are 25, 50, and 100 rows. If the state
+     * of the table is saved (see {@link #stateSave()}), then the selection of the option "Optimal" is saved as well, so
+     * that the number of rows will be computed again for the next visit.
+     *
+     * @return this {@link TableConfiguration} for chaining methods
+     */
+    public TableConfiguration optimalPageLength() {
+        configuration.put("optimalPageLength", true);
+        useOptimalPageLength = true;
+        return this;
+    }
+
+    /**
+     * Returns whether the page length option "Optimal" is configured to be used.
+     *
+     * @return true, if the page length is computed from the size of the browser window, false otherwise
+     */
+    public boolean isUseOptimalPageLength() {
+        return useOptimalPageLength;
     }
 
     /**
