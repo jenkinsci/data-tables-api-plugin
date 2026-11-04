@@ -1,6 +1,7 @@
 package io.jenkins.plugins.datatables;
 
-import static j2html.TagCreator.*;
+import static j2html.TagCreator.div;
+import static j2html.TagCreator.join;
 
 import edu.umd.cs.findbugs.annotations.CheckForNull;
 import io.jenkins.plugins.util.JenkinsFacade;
